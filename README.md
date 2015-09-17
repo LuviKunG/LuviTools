@@ -18,3 +18,6 @@ Some useful unity plugins, create by Thanut Panichyotai (@LuviKunG)
 - Add Singleton
 - Add Time Stamp
 - Add Version Control + MiniJSONDecode
+- Add LuviConsole
+- Add Apply Selected Prefabs
+- Add LuviTools
