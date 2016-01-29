@@ -2,11 +2,13 @@
 Some useful unity plugins, create by Thanut Panichyotai (@LuviKunG)
 
 ## Version History
+
 ### January 29th 2016
 - Add LuviUpdate.
 - Modified LuviTools to using namespace.
 - Modified LuviBehaviour to using namespace.
 - Modified CameraPPU able to run in Inspector.
+- Remove ILuviUpdate in Lesson.
 
 ### Older Version
 - Add Inspector Label.
