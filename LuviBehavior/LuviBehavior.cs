@@ -1,75 +1,83 @@
 ﻿using UnityEngine;
+using System.Collections;
 
 public class LuviBehavior : MonoBehaviour
 {
-    /*
-     * LuviBehavior 1.1.0
-     * By LuviKunG
-     * - Remove LuviDebug Log
-     * - Add Rigidbody & Rigidbody2D cache
-     */
-    private Transform _transform = null;
+    private Transform cacheTrans = null;
+    /// <summary>
+    /// Cache old transform to fast pick-up.
+    /// </summary>
     public new Transform transform
     {
         get
         {
-            if (_transform == null)
+            if (cacheTrans == null)
             {
-                _transform = base.transform;
+                cacheTrans = base.transform;
             }
-            return _transform;
+            return cacheTrans;
         }
     }
 
-    private GameObject _gameObject = null;
+    private GameObject cacheGameObj = null;
+    /// <summary>
+    /// Cache old gameObject to fast pick-up.
+    /// </summary>
     public new GameObject gameObject
     {
         get
         {
-            if (_gameObject == null)
+            if (cacheGameObj == null)
             {
-                _gameObject = base.gameObject;
+                cacheGameObj = base.gameObject;
             }
-            return _gameObject;
+            return cacheGameObj;
         }
     }
+    
+	private Rigidbody2D cacheRigid2D = null;
+	/// <summary>
+	/// Cache old gameObject to fast pick-up.
+	/// </summary>
+	public new Rigidbody2D rigidbody2D
+	{
+		get
+		{
+			if (cacheRigid2D == null)
+			{
+				cacheRigid2D = base.rigidbody2D;
+			}
+			return cacheRigid2D;
+		}
+	}
 
-    private RectTransform _rectTransform;
-    public RectTransform rectTransform
-    {
-        get
-        {
-            if (_rectTransform == null)
-            {
-                _rectTransform = GetComponent<RectTransform>();
-            }
-            return _rectTransform;
-        }
-    }
+    //Coroutine hookUpdate;
+    //public new bool enabled
+    //{
+    //    get
+    //    {
+    //        return hookUpdate != null;
+    //    }
+    //    set
+    //    {
+    //        if (value)
+    //        {
+    //            if (hookUpdate != null) StopCoroutine(hookUpdate);
+    //            hookUpdate = StartCoroutine(HookUpdate());
+    //        }
+    //        else
+    //        {
 
-    private Rigidbody _rigidbody;
-    public Rigidbody rigidbody
-    {
-        get
-        {
-            if (_rigidbody == null)
-            {
-                _rigidbody = GetComponent<Rigidbody>();
-            }
-            return _rigidbody;
-        }
-    }
+    //        }
+    //    }
+    //}
+    //IEnumerator HookUpdate()
+    //{
 
-    private Rigidbody2D _rigidbody2D;
-    public Rigidbody2D rigidbody2D
-    {
-        get
-        {
-            if (_rigidbody2D == null)
-            {
-                _rigidbody2D = GetComponent<Rigidbody2D>();
-            }
-            return _rigidbody2D;
-        }
-    }
+    //}
+}
+
+public interface ILuviUpdate
+{
+    void HookUpdate();
 }
