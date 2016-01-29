@@ -1,4 +1,6 @@
 ﻿using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;
 
 namespace LuviKunG
 {
@@ -62,7 +64,7 @@ namespace LuviKunG
             return array[rand];
         }
 
-        public static T RandomObject<T>(System.Collections.Generic.List<T> list)
+        public static T RandomObject<T>(List<T> list)
         {
             int rand = Random.Range(0, list.Count);
             return list[rand];
@@ -81,7 +83,7 @@ namespace LuviKunG
             return t % length;
         }
 
-        public static System.Collections.IEnumerator DelayAction(float time, System.Action action)
+        public static IEnumerator DelayAction(float time, System.Action action)
         {
             float cd = 0;
             while (cd < time)
@@ -94,15 +96,15 @@ namespace LuviKunG
 
         public enum StringRandomType
         {
+            Default,
             LowerCase,
             UpperCase,
             UpperAndLowerCase,
             LowerCaseWithNumber,
-            UpperCaseWithNumber,
-            UpperAndLowerCaseWithNumber
+            UpperCaseWithNumber
         }
 
-        public static string RandomString(int length, StringRandomType type = StringRandomType.UpperAndLowerCaseWithNumber)
+        public static string RandomString(int length, StringRandomType type = StringRandomType.Default)
         {
             string valid;
             switch (type)
@@ -128,7 +130,7 @@ namespace LuviKunG
             }
             string res = "";
             while (0 < length--)
-                res += valid[UnityEngine.Random.Range(0, valid.Length)];
+                res += valid[Random.Range(0, valid.Length)];
             return res;
         }
     }

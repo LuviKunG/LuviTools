@@ -1,7 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
+using LuviKunG;
 
-public class CameraPixelPerUnit : MonoBehaviour
+[ExecuteInEditMode]
+public class CameraPixelPerUnit : LuviBehaviour
 {
     [SerializeField]
     Camera mCamera;
@@ -10,20 +12,29 @@ public class CameraPixelPerUnit : MonoBehaviour
     public float PixelPerUnit = 32f;
     public float PPUScale = 1f;
 
-    public float OrthographicSize { get { return (VerticalResolution / (PixelPerUnit * PPUScale)) / 2f; } }
-
-    void Reset()
+    public float GetOrthographicSize()
     {
-        mCamera.GetComponent<Camera>();
-        if (mCamera != null) Execute();
+        return (VerticalResolution / (PixelPerUnit * PPUScale)) / 2f;
     }
 
-    [ContextMenu("Execute")]
+    #if UNITY_EDITOR
+    void Reset()
+    {
+        mCamera = GetComponent<Camera>();
+        if (mCamera != null) Execute();
+    }
+    #endif
+
     void Execute()
     {
         if (mCamera.orthographic)
-        {
-            mCamera.orthographicSize = OrthographicSize;
-        }        
+            mCamera.orthographicSize = GetOrthographicSize();
     }
+
+    #if UNITY_EDITOR
+    void Update()
+    {
+        Execute();
+    }
+    #endif
 }
