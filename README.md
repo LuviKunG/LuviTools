@@ -3,6 +3,15 @@ Some useful unity plugins, create by Thanut Panichyotai (@LuviKunG)
 
 ## Version History
 
+### October 4th 2016
+- Move obsolete sctipts into 'Obsolete Scripts' folder.
+- Add CacheBehaviour.
+- Add Loop List.
+- Add Limit List.
+- Add Sector List.
+- Add Gacha.
+- Add Modified Canvas Group Inspector.
+
 ### January 29th 2016
 - Add LuviUpdate.
 - Modified LuviTools to using namespace.

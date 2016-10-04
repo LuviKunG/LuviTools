@@ -1,30 +1,20 @@
-﻿using UnityEngine;
-using System;
-using System.Collections;
-using System.Collections.Generic;
+using UnityEngine;
 
-public class Singleton<T> : MonoBehaviour where T : MonoBehaviour
+namespace LuviKunG
 {
-    private static T _instance;
-
-    /// <summary>
-    /// get: returns the instance of this singleton.
-    /// set: set new instance if this singleton.
-    /// </summary>
-    public static T Instance
+    public class Singleton<T> where T : MonoBehaviour
     {
-        get
+        private static T instance;
+        public static T Instance
         {
-            if (_instance == null)
+            get
             {
-                Debug.LogError("An instance of " + typeof(T) + " is not to be instance object.");
-                return null;
+                return instance;
             }
-            return _instance;
-        }
-        set
-        {
-            if (_instance == null) _instance = value;
+            set
+            {
+                instance = value;
+            }
         }
     }
 }
