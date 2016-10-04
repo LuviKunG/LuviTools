@@ -11,6 +11,7 @@ Some useful unity plugins, create by Thanut Panichyotai (@LuviKunG)
 - Add Sector List.
 - Add Gacha.
 - Add Modified Canvas Group Inspector.
+- Add Pool Object.
 
 ### January 29th 2016
 - Add LuviUpdate.
