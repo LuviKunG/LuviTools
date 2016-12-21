@@ -3,6 +3,9 @@ Some useful unity plugins, create by Thanut Panichyotai (@LuviKunG)
 
 ## Version History
 
+### December 21st 2016
+- Add LuviVungleAds.
+
 ### October 4th 2016
 - Move obsolete sctipts into 'Obsolete Scripts' folder.
 - Add CacheBehaviour.
