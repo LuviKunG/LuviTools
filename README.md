@@ -3,6 +3,9 @@ Some useful unity plugins, create by Thanut Panichyotai (@LuviKunG)
 
 ## Version History
 
+### March 19th 2017
+- Add Text (Localization Class).
+
 ### December 21st 2016
 - Add LuviVungleAds.
 
