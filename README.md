@@ -3,6 +3,9 @@ Some useful unity plugins, create by Thanut Panichyotai (@LuviKunG)
 
 ## Version History
 
+### March 26th 2017
+- Add Name (Minimum String Compare Class).
+
 ### March 19th 2017
 - Add Text (Localization Class).
 
