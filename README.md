@@ -3,6 +3,9 @@ Some useful unity plugins, create by Thanut Panichyotai (@LuviKunG)
 
 ## Version History
 
+### May 08th 2017
+- Add LocalizationTools/LocalizationExportCSV.
+
 ### March 26th 2017
 - Add Name (Minimum String Compare Class).
 
