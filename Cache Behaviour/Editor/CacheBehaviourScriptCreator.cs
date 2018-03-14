@@ -38,14 +38,14 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 
-public class #CLASSNAME# : CacheBehaviour
+public sealed class #CLASSNAME# : CacheBehaviour
 {
     void Awake()
     {
         
     }
     
-    IEnumerable Start()
+    IEnumerator Start()
     {
         yield break;
     }
@@ -64,19 +64,19 @@ public class #CLASSNAME# : CacheBehaviourInstance<#CLASSNAME#>
     
 }";
         private static Texture2D ScriptIcon { get { return EditorGUIUtility.IconContent("cs Script Icon").image as Texture2D; } }
-        [MenuItem("Assets/Create/LuviKunG/Basic CacheBehaviour", false, 1)]
+        [MenuItem("Assets/Create/LuviKunG/Basic CacheBehaviour", false)]
         public static void CreateBasicScript()
         {
             string path = GetNewScriptPath("NewBasicCacheBehaviour");
             CreateScript(path, basicSource);
         }
-        [MenuItem("Assets/Create/LuviKunG/Advance CacheBehaviour", false, 2)]
+        [MenuItem("Assets/Create/LuviKunG/Advance CacheBehaviour", false)]
         public static void CreateAdvanceScript()
         {
             string path = GetNewScriptPath("NewAdvanceCacheBehaviour");
             CreateScript(path, advanceSource);
         }
-        [MenuItem("Assets/Create/LuviKunG/Instance CacheBehaviour", false, 3)]
+        [MenuItem("Assets/Create/LuviKunG/Instance CacheBehaviour", false)]
         public static void CreateInstanceScript()
         {
             string path = GetNewScriptPath("NewCacheBehaviourInstance");

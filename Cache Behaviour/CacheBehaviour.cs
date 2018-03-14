@@ -1,12 +1,18 @@
 ﻿using UnityEngine;
-using System.Collections;
 
 namespace LuviKunG
 {
+    /// <summary>
+    /// This class will decrease process of internal GetComponent<Transform> and GetComponent<GameObject>.
+    /// It's have issue when component are move to new GameObject, bacause it's still return cached. Use wisely.
+    /// </summary>
     public class CacheBehaviour : MonoBehaviour
     {
-        protected Transform _transform;
-        protected GameObject _gameObject;
+        private Transform _transform;
+        private GameObject _gameObject;
+        /// <summary>
+        /// Return cached Transform.
+        /// </summary>
         public new Transform transform
         {
             get
@@ -16,6 +22,9 @@ namespace LuviKunG
                 return _transform;
             }
         }
+        /// <summary>
+        /// Return cached Game Object.
+        /// </summary>
         public new GameObject gameObject
         {
             get
@@ -24,12 +33,6 @@ namespace LuviKunG
                     _gameObject = base.gameObject;
                 return _gameObject;
             }
-        }
-        public Coroutine Coroutine(ref Coroutine coroutine, IEnumerator routine)
-        {
-            if (coroutine != null) StopCoroutine(coroutine);
-            coroutine = StartCoroutine(routine);
-            return coroutine;
         }
     }
 }

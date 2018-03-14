@@ -3,6 +3,9 @@ Some useful unity plugins, create by Thanut Panichyotai (@LuviKunG)
 
 ## Version History
 
+### March 14th 2018
+- Improve CacheBehaviour for Unity v.2017.3.
+
 ### May 08th 2017
 - Add LocalizationTools/LocalizationExportCSV.
 
