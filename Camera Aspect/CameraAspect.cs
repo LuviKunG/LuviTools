@@ -5,16 +5,22 @@ public class CameraAspect : MonoBehaviour
 {
     [NotNull]
     public Camera targetCamera;
-    public float size;
+    public bool runOnlyOnce;
+    public float size = 5.0f;
 
     private void Awake()
     {
+        if (targetCamera == null)
+            targetCamera = Camera.main;
         UpdateCameraAspect();
     }
 
     private void Update()
     {
         UpdateCameraAspect();
+#if !UNITY_EDITOR
+        if (runOnlyOnce) enabled = false;
+#endif
     }
 
     [ContextMenu("Update Camera Aspect")]

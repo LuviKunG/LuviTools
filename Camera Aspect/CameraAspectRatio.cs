@@ -5,8 +5,10 @@ public class CameraAspectRatio : MonoBehaviour
 {
     [NotNull]
     public Camera targetCamera;
-    public Vector2 size;
+    public bool runOnlyOnce;
+    public Vector2 size = new Vector2(4, 3);
     public float zoomScale = 1.0f;
+
     private float orthographicSize;
 
     private void Awake()
@@ -19,9 +21,12 @@ public class CameraAspectRatio : MonoBehaviour
     private void Update()
     {
         UpdateCameraAspect();
+#if !UNITY_EDITOR
+        if (runOnlyOnce) enabled = false;
+#endif
     }
 
-    [ContextMenu("Update Camera Aspect")]
+    [ContextMenu("Update Camera Aspect Ratio")]
     public void UpdateCameraAspect()
     {
         if (zoomScale < 0.01f)
