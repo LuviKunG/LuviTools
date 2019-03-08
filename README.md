@@ -5,11 +5,11 @@ Some useful unity plugins, created by Thanut Panichyotai (@[LuviKunG]((https://g
 
 ### March 8th 2019
 - Add LayerCoroutine class.
- - Why? Because **Unity are sucks**. They changed ```YieldInstruction``` to used by native inside of ```MonoBehaviour``` and they completely broke ```CustomYieldInstruction```. Here is [why](Layer%20Coroutine/readme.md)
+	- Why? Because **Unity are sucks**. They changed ```YieldInstruction``` to used by native inside of ```MonoBehaviour``` and they completely broke ```CustomYieldInstruction```. Here is [why](Layer%20Coroutine/readme.md)
 
 ### February 28th 2019
 - Add visual studio community theme. Require [Color Theme Editor for Visual Studio 2017](https://marketplace.visualstudio.com/items?itemName=VisualStudioPlatformTeam.VisualStudio2017ColorThemeEditor) and [Color Themes for Visual Studio](https://marketplace.visualstudio.com/items?itemName=VisualStudioPlatformTeam.ColorThemesforVisualStudio)
- - Monokai (Dark)
+	- Monokai (Dark)
 
 ### February 21st 2019
 - Add Camera Sorting component.
