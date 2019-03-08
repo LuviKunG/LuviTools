@@ -1,6 +1,6 @@
 # LayerCoroutine
 
-The story starts with my Game Developer, He's reported to me about a strange thing in Coroutine, about to stop the main coroutine but the coroutine inside isn't even stop.
+The story starts when our Game Developer in my team are reported to me that he found a strange thing in Coroutine, about to stop the main coroutine but the coroutine inside isn't even stop.
 
 By default, When you start a coroutine and you have to start another coroutine inside the first coroutine, It should be used the separate coroutine. But if you start a coroutine and yield with another IEnumerator, that IEnumerator should still working with in first coroutine!
 
