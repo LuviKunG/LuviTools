@@ -5,7 +5,7 @@ Some useful unity plugins, created by Thanut Panichyotai (@[LuviKunG]((https://g
 
 ### May 27th 2019
 - Add ```MonoBehaviourUI``` class. This is helping to get ```RectTransform``` from components in easier way.
-- Move ```Yield Instruction``` to deprecate state.
+- Move **Yield Instruction** to deprecate state.
 
 ### April 17th 2019
 - Add ```StringPath``` attribute.
