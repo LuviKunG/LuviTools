@@ -1,22 +1,21 @@
-﻿using UnityEngine;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
-using LuviKunG;
-using LuviKunG.Update;
+using UnityEngine;
 
-// LuviConsole 2.3.5
+// LuviConsole 2.3.6
+// https://github.com/LuviKunG
 
-[AddComponentMenu("LuviKunG/Luvi Console")]
-public class LuviConsole : LuviBehaviour, ILuviUpdate
+[AddComponentMenu("LuviKunG/LuviConsole")]
+public class LuviConsole : MonoBehaviour
 {
     private static LuviConsole _instance;
     public static LuviConsole Instance
     {
         get
         {
-            if (!_instance)
-                Debug.LogError("\'LuviConsole\' didn't initialize. return null.");
+            if (_instance == null)
+                throw new Exception("Cannot get any instantiate of LuviConsole.");
             return _instance;
         }
     }
@@ -37,15 +36,10 @@ public class LuviConsole : LuviBehaviour, ILuviUpdate
     {
         if (guiSkin == null) guiSkin = Resources.Load<GUISkin>("LuviConsoleGUI");
         guiSkin.label.fontSize = defaultFontSize;
-        #if UNITY_4_6
+#if UNITY_4
         Application.RegisterLogCallbackThreaded(LogReceiveCallback);
-        #endif
+#endif
         DontDestroyOnLoad(gameObject);
-    }
-
-    void Start()
-    {
-        LuviUpdate.Instance.AddUpdate(0, this);
     }
 
     void CheckScreenRotation()
@@ -62,12 +56,12 @@ public class LuviConsole : LuviBehaviour, ILuviUpdate
     public bool autoShowWarning = false;
     public bool autoShowError = false;
     public bool autoShowException = false;
-    #if (UNITY_ANDROID || UNITY_IOS) && !UNITY_EDITOR
+#if (UNITY_ANDROID || UNITY_IOS) && !UNITY_EDITOR
     private Vector3 _swipePosStart = Vector3.zero;
     private Vector3 _swipePosMoving = Vector3.zero;
-    #endif
+#endif
 
-    #if UNITY_5
+#if UNITY_5 || UNITY_2018 || UNITY_2019
     void OnEnable()
     {
         Application.logMessageReceivedThreaded += LogReceiveCallback;
@@ -77,7 +71,7 @@ public class LuviConsole : LuviBehaviour, ILuviUpdate
     {
         Application.logMessageReceivedThreaded -= LogReceiveCallback;
     }
-    #endif
+#endif
 
     void ToggleConsole()
     {
@@ -249,7 +243,7 @@ public class LuviConsole : LuviBehaviour, ILuviUpdate
     Rect _commandHelpBoxPortrait = new Rect(8, (Screen.height / 2) + 72, Screen.width - 64, 60);
     Rect _commandButtonReturnPortrait = new Rect(Screen.width - 64, Screen.height / 2, 64, 64);
     Rect _commandAreaPortrait = new Rect(8, (Screen.height / 2) + 136, Screen.width - 16, (Screen.height / 2) - 144);
-    
+
     Vector2 _scrollCommandPosition = Vector2.zero;
     Vector2 _commandButtonPos;
     Vector2 _commandButtonCalcSize;
@@ -368,20 +362,13 @@ public class LuviConsole : LuviBehaviour, ILuviUpdate
     }
     #endregion
 
-    #if UNITY_EDITOR
-    void Reset()
+    private void Update()
     {
-        name = "LuviConsole";
-    }
-    #endif
-
-    public void LuviUpdateHandler()
-    {
-        #if UNITY_EDITOR
+#if UNITY_EDITOR || UNITY_EDITOR_OSX
         GetShowHideByEditor();
-        #else
+#else
         GetShowHideByTouch();
-        #endif
+#endif
     }
 
     void OnGUI()
@@ -394,7 +381,16 @@ public class LuviConsole : LuviBehaviour, ILuviUpdate
         }
     }
 
-    #if UNITY_EDITOR
+#if UNITY_EDITOR
+    void GetShowHideByEditor()
+    {
+        if (Input.GetKeyDown(KeyCode.F1))
+        {
+            ToggleConsole();
+            GUI.FocusControl("commandfield");
+        }
+    }
+#elif UNITY_EDITOR_OSX
     void GetShowHideByEditor()
     {
         if (Input.GetKeyDown(KeyCode.Tab))
@@ -403,11 +399,11 @@ public class LuviConsole : LuviBehaviour, ILuviUpdate
             GUI.FocusControl("commandfield");
         }
     }
-    #endif
+#endif
 
+#if (UNITY_ANDROID || UNITY_IOS) && !UNITY_EDITOR
     void GetShowHideByTouch()
     {
-        #if (UNITY_ANDROID || UNITY_IOS) && !UNITY_EDITOR
         if (Input.GetMouseButtonDown(0))
         {
             _swipePosStart = Input.mousePosition;
@@ -435,8 +431,8 @@ public class LuviConsole : LuviBehaviour, ILuviUpdate
                 }
             }
         }
-        #endif
     }
+#endif
 
     void GetInputFromKeyboard()
     {

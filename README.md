@@ -3,6 +3,12 @@ Some useful unity plugins, created by Thanut Panichyotai (@[LuviKunG]((https://g
 
 ## Version History
 
+### June 3rd 2019
+- Update ```LuviConsole``` to version 2.3.6
+	- Upgrade compatible with Unity version 5, 2018 and 2019.
+	- Rearrange the inspectator.
+	- Add new unity instantiate menu on GameObject > LuviKunG > LuviConsole.
+
 ### May 27th 2019
 - Add ```MonoBehaviourUI``` class. This is helping to get ```RectTransform``` from components in easier way.
 - Move **Yield Instruction** to deprecate state.
