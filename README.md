@@ -3,6 +3,12 @@ Some useful unity plugins, created by Thanut Panichyotai (@[LuviKunG]((https://g
 
 ## Version History
 
+### June 5th 2019
+- Update ```Gacha``` class.
+	- Add ```Clear()``` to clear all gacha elements.
+	- Fix error that was using BitStrap
+	- Changes for loop instead of foreach loop.
+
 ### June 3rd 2019
 - Update ```LuviConsole``` to version 2.3.6
 	- Upgrade compatible with Unity version 5, 2018 and 2019.

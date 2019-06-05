@@ -1,7 +1,6 @@
-﻿using BitStrap;
-using System;
-using System.Text;
+﻿using System;
 using System.Collections.Generic;
+using System.Text;
 
 public class Gacha<T>
 {
@@ -68,54 +67,62 @@ public class Gacha<T>
 
     public void Add(float weight, T item, bool roll = false)
     {
-        if (list == null)
-            list = new List<GachaElement>();
+        list = list ?? new List<GachaElement>();
         list.Add(new GachaElement(weight, item));
         if (roll)
             Roll();
     }
 
+    public void Clear()
+    {
+        if (list == null)
+            return;
+        list.Clear();
+    }
+
     public void Roll()
     {
+        if (list == null)
+            return;
         float overallWeight = 0;
         float percent = 0;
-        foreach (GachaElement element in list.Each())
+        for (int i = 0; i < list.Count; i++)
         {
-            overallWeight += element.weight;
+            overallWeight += list[i].weight;
         }
-        foreach (GachaElement element in list.Each())
+        for (int i = 0; i < list.Count; i++)
         {
-            element.minPercentage = percent;
-            percent = percent + (element.weight / overallWeight);
-            element.maxPercentage = percent;
+            list[i].minPercentage = percent;
+            percent = percent + (list[i].weight / overallWeight);
+            list[i].maxPercentage = percent;
         }
     }
 
     public T Pok()
     {
         float percent = Convert.ToSingle(random.NextDouble());
-        foreach (GachaElement element in list.Each())
+        for (int i = 0; i < list.Count; i++)
         {
-            if (element.Jackpot(percent))
-                return element.item;
+            if (list[i].Jackpot(percent))
+                return list[i].item;
         }
-        throw new InvalidOperationException("no items return.");
+        throw new InvalidOperationException("No items return.");
     }
 
     public List<T> Poks(int count)
     {
         if (count <= 0)
-            throw new InvalidCastException("length is less or equal than 0");
+            throw new InvalidCastException("Length is less or equal than 0");
         List<T> poks = new List<T>();
-        for (int i = 0; i < count; i++)
+        for (int n = 0; n < count; n++)
         {
             bool found = false;
             float chance = Convert.ToSingle(random.NextDouble());
-            foreach (GachaElement element in list.Each())
+            for (int i = 0; i < list.Count; i++)
             {
-                if (element.Jackpot(chance))
+                if (list[i].Jackpot(chance))
                 {
-                    poks.Add(element.item);
+                    poks.Add(list[i].item);
                     found = true;
                     break;
                 }
