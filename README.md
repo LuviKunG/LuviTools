@@ -3,6 +3,15 @@ Some useful unity plugins, created by Thanut Panichyotai (@[LuviKunG]((https://g
 
 ## Version History
 
+### June 10th 2019
+- Add ```IListExtension``` which include two useful method.
+	- ```Shuffle()``` to shuffle all member in list.
+	- ```Combination(int sample)``` to get all possible combination of sample in list.
+- Deprecated 2 class, because Unity 2018 or better version are support C# 7.0 and it's already included these extension method.
+	- ```EnumExtension``` of ```bool HasFlag(enum flags)``` and ```bool TryParse<TEnum>(string s)```
+	- ```StringBuilderExtension``` of ```void Clear()```
+- Change ```RichTextHelper``` into ```RichTextExtension``` which using namespace **LuviKunG.RichText;**
+
 ### June 5th 2019
 - Update ```Gacha``` class.
 	- Add ```Clear()``` to clear all gacha elements.

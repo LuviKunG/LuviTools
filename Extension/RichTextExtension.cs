@@ -1,11 +1,11 @@
 ﻿using UnityEngine;
 using StringBuilder = System.Text.StringBuilder;
 
-namespace LuviKunG
+namespace LuviKunG.RichText
 {
-    public static class RichTextHelper
+    public static class RichTextExtension
     {
-        public static string Color(string s, string hexString)
+        public static string Color(this string s, string hexString)
         {
             Color color;
             if (ColorUtility.TryParseHtmlString(hexString, out color))
@@ -13,7 +13,7 @@ namespace LuviKunG
             else
                 return s;
         }
-        public static string Color(string s, Color color)
+        public static string Color(this string s, Color color)
         {
             StringBuilder str = new StringBuilder();
             str.Append("<color=");
@@ -23,7 +23,7 @@ namespace LuviKunG
             str.Append("</color>");
             return str.ToString();
         }
-        public static string Bold(string s)
+        public static string Bold(this string s)
         {
             StringBuilder str = new StringBuilder();
             str.Append("<b>");
@@ -31,7 +31,7 @@ namespace LuviKunG
             str.Append("</b>");
             return str.ToString();
         }
-        public static string Italic(string s)
+        public static string Italic(this string s)
         {
             StringBuilder str = new StringBuilder();
             str.Append("<i>");
@@ -39,7 +39,7 @@ namespace LuviKunG
             str.Append("</i>");
             return str.ToString();
         }
-        public static string Size(string s, int size)
+        public static string Size(this string s, int size)
         {
             StringBuilder str = new StringBuilder();
             str.Append("<size=");
