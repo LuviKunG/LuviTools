@@ -3,6 +3,9 @@ Some useful unity plugins, created by Thanut Panichyotai (@[LuviKunG]((https://g
 
 ## Version History
 
+### June 17th 2019
+- Add **Monokai2019.vstheme** for Visual Studio Community 2019
+
 ### June 10th 2019
 - Add ```IListExtension``` which include two useful method.
 	- ```Shuffle()``` to shuffle all member in list.
