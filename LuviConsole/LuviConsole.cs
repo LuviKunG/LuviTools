@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using UnityEngine;
 
-// LuviConsole 2.3.6
+// LuviConsole 2.3.7
 // https://github.com/LuviKunG
 
 [AddComponentMenu("LuviKunG/LuviConsole")]
@@ -366,8 +366,10 @@ public class LuviConsole : MonoBehaviour
     {
 #if UNITY_EDITOR || UNITY_EDITOR_OSX
         GetShowHideByEditor();
-#else
+#elif UNITY_ANDROID || UNITY_IOS
         GetShowHideByTouch();
+#elif UNITY_WEBGL
+        GetShowHideByWebGL();
 #endif
     }
 
@@ -380,7 +382,6 @@ public class LuviConsole : MonoBehaviour
             ShowCommandWindow();
         }
     }
-
 #if UNITY_EDITOR
     void GetShowHideByEditor()
     {
@@ -399,9 +400,7 @@ public class LuviConsole : MonoBehaviour
             GUI.FocusControl("commandfield");
         }
     }
-#endif
-
-#if (UNITY_ANDROID || UNITY_IOS) && !UNITY_EDITOR
+#elif UNITY_ANDROID || UNITY_IOS
     void GetShowHideByTouch()
     {
         if (Input.GetMouseButtonDown(0))
@@ -430,6 +429,15 @@ public class LuviConsole : MonoBehaviour
                     }
                 }
             }
+        }
+    }
+#elif UNITY_WEBGL
+    void GetShowHideByWebGL()
+    {
+        if (Input.GetKeyDown(KeyCode.Tab))
+        {
+            ToggleConsole();
+            GUI.FocusControl("commandfield");
         }
     }
 #endif

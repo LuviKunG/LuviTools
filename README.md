@@ -3,6 +3,12 @@ Some useful unity plugins, created by Thanut Panichyotai (@[LuviKunG]((https://g
 
 ## Version History
 
+### June 20th 2019
+- Update ```LuviConsole``` to version 2.3.7
+	- WebGL support.
+- Update **Monokai2019.vstheme**
+	- Include various monokai color window.
+
 ### June 17th 2019
 - Add **Monokai2019.vstheme** for Visual Studio Community 2019
 

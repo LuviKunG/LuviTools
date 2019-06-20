@@ -6,11 +6,7 @@ using UnityEngine;
 [CanEditMultipleObjects]
 public class LuviConsoleEditor : Editor
 {
-    private const string VERSION_LABEL = "Luvi Console Version 2.3.6";
-    private const string _messageWin = "In editor, Press F1 for toggle LuviDebug.";
-    private const string _messageOSX = "In editor, Press Tap for toggle LuviDebug.";
-    private const string _deviceAndroid = "In your Android device, Swipe up direction in your screen for open LuviDebug. And swipe down for close LuviDebug.";
-    private const string _deviceiOS = "In your iPhone/iPad/iPod device, Swipe up direction in your screen for open LuviDebug. And swipe down for close LuviDebug.";
+    private const string VERSION_LABEL = "Luvi Console Version 2.3.7";
     private StringBuilder sb;
 
     public void OnEnable()
@@ -18,16 +14,19 @@ public class LuviConsoleEditor : Editor
         sb = sb ?? new StringBuilder();
         sb.Clear();
 #if UNITY_EDITOR
-        sb.Append(_messageWin);
+        sb.Append("In editor, Press F1 for toggle LuviDebug.");
 #elif UNITY_EDITOR_OSX
-        sb.Append(_messageOSX);
+        sb.Append("In editor, Press Tap for toggle LuviDebug.");
 #endif
 #if UNITY_ANDROID
         sb.AppendLine();
-        sb.Append(_deviceAndroid);
+        sb.Append("In your Android device, Swipe up direction in your screen for open LuviDebug. And swipe down for close LuviDebug.");
 #elif UNITY_IOS
         sb.AppendLine();
-        sb.Append(_deviceiOS);
+        sb.Append("In your iPhone/iPad/iPod device, Swipe up direction in your screen for open LuviDebug. And swipe down for close LuviDebug.");
+#elif UNITY_WEBGL
+        sb.AppendLine();
+        sb.Append("In your WebGL builds, Press Tap for toggle LuviDebug.");
 #endif
     }
 
