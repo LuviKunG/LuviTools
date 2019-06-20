@@ -4,8 +4,14 @@ Some useful unity plugins, created by Thanut Panichyotai (@[LuviKunG]((https://g
 ## Version History
 
 ### June 20th 2019
-- Update ```LuviConsole``` to version 2.3.7
+- <del>Update ```LuviConsole``` to version 2.3.7</del>
+	- <del>WebGL support.</del>
+- Update ```LuviConsole``` to version 2.4.0
 	- WebGL support.
+	- New drag scroll view on log. (all platform)
+	- New LuviCommand syntax.
+	- Realtime update window size and orientation.
+	- Require to start with ```using LuviKunG;```
 - Update **Monokai2019.vstheme**
 	- Include various monokai color window.
 
