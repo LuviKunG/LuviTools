@@ -10,8 +10,11 @@ Some useful unity plugins, created by Thanut Panichyotai (@[LuviKunG]((https://g
 	- WebGL support.
 	- New drag scroll view on log. (all platform)
 	- New LuviCommand syntax.
+		- Now you can use string in your command by using quote "Your string here" to get full string without serparate by space.
+		- Fix bugs that execute by double quote and got an error.
 	- Realtime update window size and orientation.
 	- Require to start with ```using LuviKunG;```
+	- Add ```LuviConsoleException``` to throw error during execute command.
 - Update **Monokai2019.vstheme**
 	- Include various monokai color window.
 
