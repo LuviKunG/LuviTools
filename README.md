@@ -3,6 +3,11 @@ Some useful unity plugins, created by Thanut Panichyotai (@[LuviKunG]((https://g
 
 ## Version History
 
+### June 25th 2019
+- Add ```DateTimeExtension```
+	- Print ISO 8601 format with ```DateTime.Now.ISO8601();```
+	- [https://en.wikipedia.org/wiki/ISO_8601](https://en.wikipedia.org/wiki/ISO_8601)
+
 ### June 20th 2019
 - <del>Update ```LuviConsole``` to version 2.3.7</del>
 	- <del>WebGL support.</del>
