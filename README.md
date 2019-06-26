@@ -3,6 +3,9 @@ Some useful unity plugins, created by Thanut Panichyotai (@[LuviKunG]((https://g
 
 ## Version History
 
+### June 26th 2019
+- Add ```ThaiCharacterReplacerTMP``` in Thai Font Adjuster Pack for Text Mesh Pro for typing Thai character.
+
 ### June 25th 2019
 - Add ```DateTimeExtension```
 	- Print ISO 8601 format with ```DateTime.Now.ISO8601();```
