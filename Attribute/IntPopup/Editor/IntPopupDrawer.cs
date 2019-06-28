@@ -1,12 +1,22 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using UnityEditor;
 using UnityEngine;
-using UnityEditor;
 
 [CustomPropertyDrawer(typeof(IntPopupAttribute))]
 public class IntPopupDrawer : PropertyDrawer
 {
+    private const string TYPE_NOT_SUPPORT = "Type not support.";
+
     private IntPopupAttribute intPopup;
+
+    public override bool CanCacheInspectorGUI(SerializedProperty property)
+    {
+        if (property.type == "int")
+        {
+            intPopup = attribute as IntPopupAttribute;
+            return true;
+        }
+        else return false;
+    }
 
     public override float GetPropertyHeight(SerializedProperty property, GUIContent label)
     {
@@ -15,14 +25,21 @@ public class IntPopupDrawer : PropertyDrawer
 
     public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
     {
-        intPopup = attribute as IntPopupAttribute;
-        EditorGUI.BeginProperty(position, label, property);
-        position = EditorGUI.PrefixLabel(position, GUIUtility.GetControlID(FocusType.Passive), label);
-        var indent = EditorGUI.indentLevel;
-        EditorGUI.indentLevel = 0;
-        Rect rect = new Rect(position.x, position.y, position.width, position.height);
-        property.intValue = EditorGUI.IntPopup(rect, property.intValue, intPopup.name, intPopup.value);
-        EditorGUI.indentLevel = indent;
-        EditorGUI.EndProperty();
+        using (var scopeProperty = new EditorGUI.PropertyScope(position, label, property))
+        {
+            var indent = EditorGUI.indentLevel;
+            position = EditorGUI.PrefixLabel(position, GUIUtility.GetControlID(FocusType.Passive), label);
+            EditorGUI.indentLevel = 0;
+            var rect = new Rect(position.x, position.y, position.width, position.height);
+            if (property.type == "int")
+            {
+                property.intValue = EditorGUI.IntPopup(rect, property.intValue, intPopup.name, intPopup.value);
+            }
+            else
+            {
+                EditorGUI.HelpBox(rect, TYPE_NOT_SUPPORT, MessageType.Error);
+            }
+            EditorGUI.indentLevel = indent;
+        }
     }
 }

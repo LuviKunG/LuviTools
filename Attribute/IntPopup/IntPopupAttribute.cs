@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-[AttributeUsage(AttributeTargets.Property | AttributeTargets.Field, AllowMultiple = false)]
+[AttributeUsage(AttributeTargets.Field, AllowMultiple = false)]
 public class IntPopupAttribute : PropertyAttribute
 {
     public string[] name;
@@ -10,6 +10,14 @@ public class IntPopupAttribute : PropertyAttribute
     public IntPopupAttribute(string[] name, int[] value)
     {
         this.name = name;
+        this.value = value;
+    }
+
+    public IntPopupAttribute(int[] value)
+    {
+        name = new string[value.Length];
+        for (int i = 0; i < value.Length; i++)
+            name[i] = value[i].ToString("N0");
         this.value = value;
     }
 }

@@ -3,6 +3,17 @@ Some useful unity plugins, created by Thanut Panichyotai (@[LuviKunG]((https://g
 
 ## Version History
 
+### June 28th 2019
+- Deprecated ```Enchant List``` but...
+- Add new List in **Utilities**.
+	- ```Loop``` for loop the member in list while using Next or Prev.
+	- ```Limit``` it's list that when adding new member will remove first-in member if it's reach to limit.
+- Add ```RandomString``` for random string.
+- Add ```Setter``` for making extension that receive member and set it back without doing cache.
+	- Example in this [readme.md](Utilities/Setter/readme.md)
+- Add ```StringScene``` to making string field into Scene Selection in Inspector.
+- Update ```StringPath```, ```StringPopup```, ```IntPopup``` to show an error if using the attribute in the wrong type.
+
 ### June 26th 2019
 - Add ```ThaiCharacterReplacerTMP``` in Thai Font Adjuster Pack for Text Mesh Pro for typing Thai character.
 
