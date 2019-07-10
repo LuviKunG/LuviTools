@@ -5,6 +5,13 @@ namespace LuviKunG.RichText
 {
     public static class RichTextExtension
     {
+        private static StringBuilder str;
+
+        static RichTextExtension()
+        {
+            str = new StringBuilder();
+        }
+
         public static string Color(this string s, string hexString)
         {
             Color color;
@@ -16,7 +23,7 @@ namespace LuviKunG.RichText
 
         public static string Color(this string s, Color color)
         {
-            StringBuilder str = new StringBuilder();
+            str.Clear();
             str.Append("<color=#");
             str.Append(ColorUtility.ToHtmlStringRGB(color));
             str.Append(">");
@@ -27,7 +34,7 @@ namespace LuviKunG.RichText
 
         public static string Bold(this string s)
         {
-            StringBuilder str = new StringBuilder();
+            str.Clear();
             str.Append("<b>");
             str.Append(s);
             str.Append("</b>");
@@ -36,7 +43,7 @@ namespace LuviKunG.RichText
 
         public static string Italic(this string s)
         {
-            StringBuilder str = new StringBuilder();
+            str.Clear();
             str.Append("<i>");
             str.Append(s);
             str.Append("</i>");
@@ -45,7 +52,7 @@ namespace LuviKunG.RichText
 
         public static string Size(this string s, int size)
         {
-            StringBuilder str = new StringBuilder();
+            str.Clear();
             str.Append("<size=");
             str.Append(size);
             str.Append(">");

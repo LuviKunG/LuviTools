@@ -5,7 +5,7 @@ MonoImporter:
   serializedVersion: 2
   defaultReferences:
   - guiSkin: {instanceID: 0}
-  executionOrder: 0
+  executionOrder: -1
   icon: {instanceID: 0}
   userData: 
   assetBundleName: 

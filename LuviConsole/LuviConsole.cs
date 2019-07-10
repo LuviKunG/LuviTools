@@ -1,27 +1,39 @@
 ﻿using System;
+using System.Linq;
 using System.Collections.Generic;
 using System.Text;
 using UnityEngine;
+using LuviKunG.RichText;
 
-// LuviConsole 2.4.0
+// LuviConsole 2.4.1
 // https://github.com/LuviKunG
 
 namespace LuviKunG
 {
     [AddComponentMenu("LuviKunG/LuviConsole")]
-    public class LuviConsole : MonoBehaviour
+    public sealed class LuviConsole : MonoBehaviour
     {
+        private const string DEFAULT_PREFAB_RESOURCE_PATH = "LuviKunG/LuviConsole";
+        private static readonly Color LOG_COLOR_COMMAND = new Color(0.0f, 1.0f, 1.0f, 1.0f);
+        private static readonly Color LOG_COLOR_WARNING = new Color(1.0f, 1.0f, 0.0f, 1.0f);
+        private static readonly Color LOG_COLOR_ERROR = new Color(1.0f, 0.0f, 0.0f, 1.0f);
+        private static readonly string NAME = typeof(LuviConsole).Name;
+
         public class CommandData
         {
             public string name;
             public string description;
             public LuviCommandExecution execution;
+            public bool executeImmediately;
+            public string group;
 
-            public CommandData(string name, string description, LuviCommandExecution execution)
+            public CommandData(string name, string description, LuviCommandExecution execution, bool executeImmediately = false, string group = null)
             {
                 this.name = name;
                 this.description = description;
                 this.execution = execution;
+                this.executeImmediately = executeImmediately;
+                this.group = group;
             }
         }
 
@@ -32,8 +44,10 @@ namespace LuviKunG
             {
                 if (instance == null)
                 {
-                    GameObject obj = new GameObject("LuviConsole");
-                    instance = obj.AddComponent<LuviConsole>();
+                    LuviConsole prefab = Resources.Load<LuviConsole>(DEFAULT_PREFAB_RESOURCE_PATH);
+                    if (prefab == null) throw new MissingReferenceException($"Cannot find {NAME} asset/prefab in resources path {DEFAULT_PREFAB_RESOURCE_PATH}.");
+                    instance = Instantiate(prefab);
+                    instance.name = prefab.name;
                 }
                 return instance;
             }
@@ -49,10 +63,18 @@ namespace LuviKunG
         public bool autoShowWarning = false;
         public bool autoShowError = false;
         public bool autoShowException = false;
+        public bool commandLog = false;
 
         private void Awake()
         {
-            if (!instance) instance = this;
+            if (instance == null)
+                instance = this;
+            else if (instance != this)
+            {
+                Debug.LogError($"There are 2 or more \'{NAME}\' on the scene. The new instance will be destroy.");
+                Destroy(this);
+                return;
+            }
             Initialize();
         }
 
@@ -190,11 +212,13 @@ namespace LuviKunG
         private Dictionary<string, CommandData> commandData = new Dictionary<string, CommandData>();
         private List<string> log = new List<string>();
         private List<string> excuteLog = new List<string>();
+        private StringBuilder str = new StringBuilder();
 
         private bool isShowing;
         private bool isScrollDebugDragging = false;
         private string commandHelpText = "";
         private string command = "";
+        private string commandDisplayingGroup = null;
         private int executeLogPos;
         private int indexConsole;
         private int indexDebug;
@@ -206,19 +230,10 @@ namespace LuviKunG
         private void ToggleConsole() { isShowing = !isShowing; }
         private void ScrollLogToBottom() { instance.scrollDebugPosition = instance.scrollLockPosition; }
 
-        public static void Log(string str, string colorhex = null, bool bold = false, bool italic = false)
+        public static void Log(string str)
         {
             if (string.IsNullOrEmpty(str))
                 return;
-            if (!string.IsNullOrEmpty(colorhex))
-            {
-                if (colorhex.Length == 7 && colorhex.Contains("#"))
-                    str = $"<color={colorhex}>{str}</color>";
-            }
-            if (bold)
-                str = $"<b>{str}</b>";
-            if (italic)
-                str = $"<i>{str}</i>";
             instance.log.Add(str);
             instance.ScrollLogToBottom();
         }
@@ -228,16 +243,42 @@ namespace LuviKunG
             switch (type)
             {
                 case LogType.Warning:
-                    Log($"Warning: {message}", colorhex: "#FFFF00", italic: true);
-                    if (autoShowWarning & !isShowing) isShowing = true;
+                    {
+                        str.Clear();
+                        str.Append("Warning: ");
+                        str.Append(message);
+                        str.Color(LOG_COLOR_WARNING);
+                        str.Italic();
+                        Log(str.ToString());
+                        if (autoShowWarning & !isShowing)
+                            isShowing = true;
+                    }
                     break;
                 case LogType.Error:
-                    Log($"Error: {message}", colorhex: "#FF0000", bold: true);
-                    if (autoShowError & !isShowing) isShowing = true;
+                    {
+                        str.Clear();
+                        str.Append("Error: ");
+                        str.Append(message);
+                        str.Color(LOG_COLOR_ERROR);
+                        str.Bold();
+                        Log(str.ToString());
+                        if (autoShowError & !isShowing)
+                            isShowing = true;
+                    }
                     break;
                 case LogType.Exception:
-                    Log($"<b>Exception: {message}</b>\n{stackTrace}", colorhex: "#FF0000");
-                    if (autoShowException & !isShowing) isShowing = true;
+                    {
+                        str.Clear();
+                        str.Append("Exception: ");
+                        str.Append(message);
+                        str.Bold();
+                        str.AppendLine();
+                        str.Append(stackTrace);
+                        str.Color(LOG_COLOR_ERROR);
+                        Log(str.ToString());
+                        if (autoShowException & !isShowing)
+                            isShowing = true;
+                    }
                     break;
                 default:
                     Log(message);
@@ -302,7 +343,7 @@ namespace LuviKunG
                     {
                         if (indexDebug > logCapacity)
                             break;
-                        GUILayout.Label(log[indexDebug], guiSkin.label, GUILayout.Width((Screen.width / 2) - 52));
+                        GUILayout.Label(log[indexDebug], guiSkin.label);
                     }
                 }
             }
@@ -338,15 +379,52 @@ namespace LuviKunG
                 {
                     scrollScope.handleScrollWheel = true;
                     scrollCommandPosition = scrollScope.scrollPosition;
+                    string cacheGroupName = null;
                     using (var verticalScope = new GUILayout.VerticalScope())
                     {
                         foreach (var commandElement in commandData)
                         {
-                            if (GUILayout.Button(commandElement.Value.name, guiSkin.button))
+                            if (cacheGroupName != commandElement.Value.group)
                             {
-                                command = commandElement.Key;
-                                commandHelpText = commandElement.Value.description;
-                                GUI.FocusControl("commandfield");
+                                cacheGroupName = commandElement.Value.group;
+                                if (!string.IsNullOrEmpty(cacheGroupName))
+                                {
+                                    if (GUILayout.Button(cacheGroupName, guiSkin.customStyles[2]))
+                                    {
+                                        if (string.IsNullOrEmpty(commandDisplayingGroup) || commandDisplayingGroup != cacheGroupName)
+                                            commandDisplayingGroup = cacheGroupName;
+                                        else
+                                            commandDisplayingGroup = null;
+                                    }
+                                }
+                                else
+                                {
+                                    GUILayout.Label("Etc.", guiSkin.customStyles[2]);
+                                }
+                            }
+                            if (!string.IsNullOrEmpty(commandDisplayingGroup) && commandDisplayingGroup == cacheGroupName)
+                            {
+                                if (GUILayout.Button(commandElement.Value.name, guiSkin.customStyles[3]))
+                                {
+                                    command = commandElement.Key;
+                                    commandHelpText = commandElement.Value.description;
+                                    if (commandElement.Value.executeImmediately)
+                                        RunCommand();
+                                    else
+                                        GUI.FocusControl("commandfield");
+                                }
+                            }
+                            else if (string.IsNullOrEmpty(cacheGroupName))
+                            {
+                                if (GUILayout.Button(commandElement.Value.name, guiSkin.customStyles[3]))
+                                {
+                                    command = commandElement.Key;
+                                    commandHelpText = commandElement.Value.description;
+                                    if (commandElement.Value.executeImmediately)
+                                        RunCommand();
+                                    else
+                                        GUI.FocusControl("commandfield");
+                                }
                             }
                         }
                     }
@@ -373,10 +451,13 @@ namespace LuviKunG
             }
         }
 
-        public void AddCommand(string prefix, string name, string description, LuviCommandExecution execution)
+        public void AddCommand(string prefix, string name, string description, LuviCommandExecution execution, bool executeImmediately = false, string group = null)
         {
             if (!commandData.ContainsKey(prefix))
-                commandData.Add(prefix, new CommandData(name, description, execution));
+            {
+                commandData.Add(prefix, new CommandData(name, description, execution, executeImmediately, group));
+                commandData.OrderBy(member => member.Value.group);
+            }
             else
                 Debug.LogWarning($"Luvi Console already have {prefix} command, Disposed.");
         }
@@ -389,12 +470,22 @@ namespace LuviKunG
         private void RunCommand()
         {
             command = command.Trim();
+            if (commandLog)
+            {
+                str.Clear();
+                str.Append(command);
+                str.Italic();
+                str.Insert(0, '>');
+                str.Color(LOG_COLOR_COMMAND);
+                Log(str.ToString());
+            }
             if (!string.IsNullOrEmpty(command))
             {
                 List<string> splitCommand = SplitCommand(command);
                 if (splitCommand.Count > 0)
                 {
                     string prefix = splitCommand[0];
+                    splitCommand.RemoveAt(0);
                     if (commandData.ContainsKey(prefix))
                     {
                         commandData[prefix].execution(splitCommand);
@@ -403,15 +494,16 @@ namespace LuviKunG
                     }
                     else
                     {
-                        Log("No command found.", colorhex: "#FFFF00");
+                        str.Clear();
+                        str.Append("No command were found.");
+                        str.Color(LOG_COLOR_COMMAND);
+                        Log(str.ToString());
                         ExcuteLog();
                         return;
                     }
                 }
                 else
                 {
-                    // This can be happen when user put only double quote into the command -> "".
-                    // Just reset it.
                     command = "";
                     return;
                 }
@@ -493,5 +585,5 @@ namespace LuviKunG
         }
     }
 
-    public delegate void LuviCommandExecution(List<string> splitCommand);
+    public delegate void LuviCommandExecution(List<string> parameters);
 }

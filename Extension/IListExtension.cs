@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Text;
 using UnityRandom = UnityEngine.Random;
 
 public static class IListExtension
@@ -112,5 +111,13 @@ public static class IListExtension
         }
         while (true);
         return g;
+    }
+
+    public delegate void ListIteration<T>(T member);
+
+    public static void Each<T>(this IList<T> list, ListIteration<T> iteration)
+    {
+        for (int i = 0; i < list.Count; i++)
+            iteration(list[i]);
     }
 }

@@ -6,6 +6,16 @@ Some useful unity plugins, created by Thanut Panichyotai (@[LuviKunG]((https://g
 ### July 10th 2019
 - Add **Extended Unity UI 2018.4** for Unity UI.
 	- Description in this [readme.md](UnityUI/Extended%20Unity%20UI%202018.4/readme.md)
+- Add new extension of ```StringBuilderRichTextExtension```.
+	- Help to add color, bold, italic while using ```System.Text.StringBuilder```.
+- Update ```LuviConsole``` to version 2.4.1
+	- New **Command Group** has been added. Using for grouping your command.
+	- New **Execute Command Immediately** has been added. Will execute the command instantly when press the command button.
+	- Remove internal Rich Text display for Log. But...
+	- Require extension of ```StringBuilderRichTextExtension``` to display rich text in Log.
+	- New **Command Log** to display your executed command in Log.
+- Update ```IListExtension```
+	- Add new ```ListIteration<T>``` for ```Each<T>``` to execute each of member.
 
 ### June 28th 2019
 - Deprecated ```Enchant List``` but...
