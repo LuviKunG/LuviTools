@@ -3,6 +3,10 @@ Some useful unity plugins, created by Thanut Panichyotai (@[LuviKunG]((https://g
 
 ## Version History
 
+### July 10th 2019
+- Add **Extended Unity UI 2018.4** for Unity UI.
+	- Description in this [readme.md](UnityUI/Extended%20Unity%20UI%202018.4/readme.md)
+
 ### June 28th 2019
 - Deprecated ```Enchant List``` but...
 - Add new List in **Utilities**.
