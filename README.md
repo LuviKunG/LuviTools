@@ -8,6 +8,9 @@ Some useful unity plugins, created by Thanut Panichyotai (@[LuviKunG]((https://g
 	- Description in this [readme.md](UnityUI/Extended%20Unity%20UI%202018.4/readme.md)
 - Add new extension of ```StringBuilderRichTextExtension```.
 	- Help to add color, bold, italic while using ```System.Text.StringBuilder```.
+- Add new **User Interface Management** components.
+	- Really & very helpful for manage **Android Back Button**
+	- Using focusing and ordering.
 - Update ```LuviConsole``` to version 2.4.1
 	- New **Command Group** has been added. Using for grouping your command.
 	- New **Execute Command Immediately** has been added. Will execute the command instantly when press the command button.
