@@ -3,7 +3,8 @@
 [DisallowMultipleComponent]
 public class AndroidMultiTouch : AndroidSetting
 {
-    public bool enableMultiTouch;
+    [SerializeField]
+    private bool enableMultiTouch = true;
 
     public override void Execute()
     {

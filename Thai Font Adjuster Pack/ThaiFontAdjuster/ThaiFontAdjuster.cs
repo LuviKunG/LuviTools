@@ -28,6 +28,7 @@ public static class ThaiFontAdjuster
     public static string Adjust(string s)
     {
         // http://www.bakoma-tex.com/doc/fonts/enc/c90/c90.pdf
+        if (string.IsNullOrEmpty(s)) return null;
 
         var length = s.Length;
         var sb = new StringBuilder(length);

@@ -1,8 +1,7 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 using UnityEditor;
+using UnityEngine;
 
 [CustomEditor(typeof(AndroidManagement))]
 public class AndroidManagementEditor : Editor
@@ -18,61 +17,39 @@ public class AndroidManagementEditor : Editor
     public override void OnInspectorGUI()
     {
         base.OnInspectorGUI();
-        EditorGUI.BeginChangeCheck();
-        if (IsContainSettings(typeof(AndroidMultiTouch)))
+        Color cacheColor = GUI.color;
+        using (var scopeChange = new EditorGUI.ChangeCheckScope())
         {
-            if (GUILayout.Button("Remove Multitouch Setting"))
-            {
-                AndroidMultiTouch setting = androidManagement.gameObject.GetComponent<AndroidMultiTouch>();
-                androidManagement.settings.Remove(setting);
-                DestroyImmediate(setting);
-            }
+            DrawButton<AndroidMultiTouch>();
+            DrawButton<AndroidTargetFramerate>();
+            DrawButton<AndroidScreenSleepTimeout>();
+            DrawButton<AndroidKeyboardInput>();
         }
-        else
-        {
-            if (GUILayout.Button("Add Multitouch Setting"))
-            {
-                AndroidMultiTouch setting = androidManagement.gameObject.AddComponent<AndroidMultiTouch>();
-                androidManagement.settings.Add(setting);
-            }
-        }
+        GUI.color = cacheColor;
+    }
 
-        if (IsContainSettings(typeof(AndroidTargetFramerate)))
+    private void DrawButton<T>() where T : AndroidSetting
+    {
+        string name = typeof(T).Name;
+        if (IsContainSettings(typeof(T)))
         {
-            if (GUILayout.Button("Remove Target Framerate Setting"))
+            GUI.color = Color.red;
+            if (GUILayout.Button($"Remove {name} Setting"))
             {
-                AndroidTargetFramerate setting = androidManagement.gameObject.GetComponent<AndroidTargetFramerate>();
+                T setting = androidManagement.gameObject.GetComponent<T>();
                 androidManagement.settings.Remove(setting);
-                DestroyImmediate(setting);
+                EditorApplication.delayCall += () => DestroyImmediate(setting);
             }
         }
         else
         {
-            if (GUILayout.Button("Add Target Framerate Setting"))
+            GUI.color = Color.green;
+            if (GUILayout.Button($"Add {name} Setting"))
             {
-                AndroidTargetFramerate setting = androidManagement.gameObject.AddComponent<AndroidTargetFramerate>();
+                T setting = androidManagement.gameObject.AddComponent<T>();
                 androidManagement.settings.Add(setting);
             }
         }
-
-        if (IsContainSettings(typeof(AndroidScreenSleepTimeout)))
-        {
-            if (GUILayout.Button("Remove Sleep Timeout Setting"))
-            {
-                AndroidScreenSleepTimeout setting = androidManagement.gameObject.GetComponent<AndroidScreenSleepTimeout>();
-                androidManagement.settings.Remove(setting);
-                DestroyImmediate(setting);
-            }
-        }
-        else
-        {
-            if (GUILayout.Button("Add Sleep Timeout Setting"))
-            {
-                AndroidScreenSleepTimeout setting = androidManagement.gameObject.AddComponent<AndroidScreenSleepTimeout>();
-                androidManagement.settings.Add(setting);
-            }
-        }
-        EditorGUI.EndChangeCheck();
     }
 
     private bool IsContainSettings(Type type)
@@ -80,5 +57,15 @@ public class AndroidManagementEditor : Editor
         for (int i = 0; i < androidManagement.settings.Count; i++)
             if (androidManagement.settings[i].GetType() == type) return true;
         return false;
+    }
+}
+
+public class AndroidManagementMenu
+{
+    [MenuItem("GameObject/LuviKunG/Android Management")]
+    public static void Create()
+    {
+        GameObject obj = new GameObject("Android Management");
+        obj.AddComponent(typeof(AndroidManagement));
     }
 }

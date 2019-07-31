@@ -1,8 +1,12 @@
 ﻿using System;
 using UnityEngine;
 
-[AttributeUsage(AttributeTargets.Property | AttributeTargets.Field, AllowMultiple = false)]
+[AttributeUsage(AttributeTargets.Field, AllowMultiple = false)]
 public class EnumFlagsAttribute : PropertyAttribute
 {
-    public EnumFlagsAttribute() { }
+    public Type enumFlagType;
+    public EnumFlagsAttribute(Type enumFlagType)
+    {
+        this.enumFlagType = enumFlagType;
+    }
 }

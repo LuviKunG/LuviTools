@@ -11,13 +11,24 @@ namespace LuviKunG.UI
             get
             {
                 if (m_rectTransform == null)
-                    m_rectTransform = transform as RectTransform;
+                    if (transform is RectTransform)
+                        m_rectTransform = transform as RectTransform;
                 return m_rectTransform;
             }
-            protected set
+            protected set => m_rectTransform = value;
+        }
+
+        [SerializeField]
+        private GameObject m_gameObject;
+        public new GameObject gameObject
+        {
+            get
             {
-                m_rectTransform = value;
+                if (m_gameObject == null)
+                    m_gameObject = base.gameObject;
+                return m_gameObject;
             }
+            protected set => m_gameObject = value;
         }
 
 #if UNITY_EDITOR
@@ -25,6 +36,8 @@ namespace LuviKunG.UI
         {
             if (m_rectTransform == null)
                 m_rectTransform = GetComponent<RectTransform>();
+            if (m_gameObject == null)
+                m_gameObject = base.gameObject;
         }
 #endif
     }

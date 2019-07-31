@@ -1,5 +1,4 @@
-﻿using UnityEngine;
-using UnityEditor;
+﻿using UnityEditor;
 
 [CustomEditor(typeof(DontDestroyOnLoad))]
 public class DontDestroyOnLoadEditor : Editor

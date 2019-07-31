@@ -1,9 +1,7 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Text;
 using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.Events;
-using System.Text;
+using UnityEngine.UI;
 
 [RequireComponent(typeof(Text)), DisallowMultipleComponent, AddComponentMenu("LuviKunG/Benchmark/Benchmark Score")]
 public class Benchmark : MonoBehaviour

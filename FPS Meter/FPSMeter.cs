@@ -1,6 +1,6 @@
-﻿using UnityEngine;
+﻿using System.Text;
+using UnityEngine;
 using UnityEngine.UI;
-using System.Text;
 
 [RequireComponent(typeof(Text)), DisallowMultipleComponent, AddComponentMenu("LuviKunG/Benchmark/FPS Meter")]
 public class FPSMeter : MonoBehaviour

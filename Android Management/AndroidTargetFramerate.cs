@@ -3,7 +3,8 @@
 [DisallowMultipleComponent]
 public class AndroidTargetFramerate : AndroidSetting
 {
-    public int targetFramerate;
+    [SerializeField]
+    private int targetFramerate = 60;
 
     public override void Execute()
     {

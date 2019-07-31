@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.Audio;
 
@@ -8,7 +9,7 @@ namespace LuviKunG.UI
     public class UserInterfaceSound : MonoBehaviour
     {
         protected const string DEFAULT_PREFAB_RESOURCE_PATH = "LuviKunG/UserInterfaceSound";
-        protected static readonly string NAME = typeof(UserInterfaceSound).Name;
+        protected static readonly string NAME = typeof(LuviConsole).Name;
 
         protected static UserInterfaceSound instance;
         public static UserInterfaceSound Instance
@@ -58,6 +59,8 @@ namespace LuviKunG.UI
 
         public void PlayBGM(AudioClip clip)
         {
+            if (currentBGM != null && currentBGM.clip == clip)
+                return;
             AudioSource source = poolBGM.Next;
             source.volume = 1.0f;
             source.clip = clip;
@@ -67,6 +70,12 @@ namespace LuviKunG.UI
             currentBGM = source;
         }
 
+        public void StopBGM()
+        {
+            if (currentBGM != null)
+                StartCoroutine(Fade(currentBGM, 0.0f, 1.0f, () => currentBGM = null));
+        }
+
         public void PlaySFX(AudioClip clip)
         {
             AudioSource source = poolSFX.Next;
@@ -74,10 +83,10 @@ namespace LuviKunG.UI
             source.Play();
         }
 
-        public void PlaySFX(AudioClip clip, Vector3 position)
+        public void PlaySFX(AudioClip clip, Vector3 atPosition)
         {
             AudioSource source = poolSFX.Next;
-            source.transform.position = position;
+            source.transform.position = atPosition;
             source.clip = clip;
             source.Play();
         }
@@ -92,6 +101,27 @@ namespace LuviKunG.UI
         {
             if (!mixer.SetFloat(mixerVolumeSFX, isActive ? 0.0f : -80.0f))
                 Debug.LogWarning($"Your audio mixer you provided has no volume settings for SFX: {mixerVolumeSFX}");
+        }
+
+        protected IEnumerator Fade(AudioSource source, float toVolume, float duration, Action onComplete)
+        {
+            float current = duration;
+            float volume = source.volume;
+            while (current > 0)
+            {
+                float t = current / duration;
+                source.volume = Mathf.Lerp(toVolume, volume, t);
+                yield return null;
+                current -= Time.deltaTime;
+            }
+            onComplete?.Invoke();
+            if (source.volume > 0)
+                source.volume = toVolume;
+            else
+            {
+                source.Stop();
+                source.volume = 1.0f;
+            }
         }
 
         protected IEnumerator CrossFade(AudioSource from, AudioSource to, float duration)

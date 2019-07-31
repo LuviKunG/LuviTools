@@ -3,6 +3,37 @@ Some useful unity plugins, created by Thanut Panichyotai (@[LuviKunG]((https://g
 
 ## Version History
 
+### August 1st 2019
+- Big day update!
+- **Android Management**
+	- New option for **Keyboard Input** that you can choose to hide input or not.
+- **Attribute**
+	- Fix **EnumFlag** cannot select the choice that value of ~0 byte.
+	- Add **LayerAttribute** to int type for layer selection in Unity Inspector.
+- Add new **Capture Screenshot (for editor)**
+	- Included with supersampling.
+	- Required **IntPopup** attribute.
+- **Extension**
+	- **IListExtension** not require ```LuviKunG.List``` namespace.
+- **FPS Meter**
+	- Add **FPSMeterLegacyGUI** for easily and quick to check FPS without doing uGUI.
+- **Pool**
+	- Add **Pool** class. It's a dynamic pooling that can instantiate prefab within target transform, include instantiate event, and require interface of **IPool** to check the member is active or not.
+- **Thai Font Adjuster Pack**
+	- Fix null string broke the adjuster class.
+	- Add **TextThaiGlyph** that act like **Text** of ```UnityEngine.UI``` but include thai character adjuster string.
+	- Add **ThaiCharacterReplacer** & **ThaiCharacterReplacerTMP* to help put thai character into **Text** or **TextMeshProUGUI** components.
+- **UnityUI**
+	- Add **ButtonToggle** to act like button + toggle that can switch between two group of GameObject that show active/inactive state.
+- **User Interface Management**
+	- Change **UserInterfaceBehaviour** class that handle GameObject reference of yourself.
+	- Fix **UserInterfaceSound** with wrong namespace and reference.
+- **Utilities**
+	- Fix **Loop** that handle wrong initial index.
+	- Add **FloatRange** and **IntRange** to define the range of numbers.
+- Simplified many script. 
+- Remove unused namespace.
+
 ### July 10th 2019
 - Add **Extended Unity UI 2018.4** for Unity UI.
 	- Description in this [readme.md](UnityUI/Extended%20Unity%20UI%202018.4/readme.md)
