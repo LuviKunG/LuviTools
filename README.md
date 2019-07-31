@@ -10,6 +10,10 @@ Some useful unity plugins, created by Thanut Panichyotai (@[LuviKunG]((https://g
 - **Attribute**
 	- Fix **EnumFlag** cannot select the choice that value of ~0 byte.
 	- Add **LayerAttribute** to int type for layer selection in Unity Inspector.
+- New **Build Pipeline for Android**
+	- Setting your build settings at first (include keystore)
+	- Choose the folder to build *.apk
+	- Build with one click!
 - Add new **Capture Screenshot (for editor)**
 	- Included with supersampling.
 	- Required **IntPopup** attribute.
