@@ -5,7 +5,7 @@ using System.Text;
 using UnityEngine;
 using LuviKunG.RichText;
 
-// LuviConsole 2.4.1
+// LuviConsole 2.4.2
 // https://github.com/LuviKunG
 
 namespace LuviKunG

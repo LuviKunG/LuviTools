@@ -19,13 +19,30 @@ namespace LuviKunG
 
         private LuviConsole console;
         private StringBuilder sb;
+        private SerializedProperty logCapacity;
+        private SerializedProperty excuteCapacity;
+        private SerializedProperty swipeRatio;
+        private SerializedProperty defaultFontSize;
+        private SerializedProperty autoShowWarning;
+        private SerializedProperty autoShowError;
+        private SerializedProperty autoShowException;
+        private SerializedProperty commandLog;
 
         public void OnEnable()
         {
             console = (LuviConsole)target;
+            logCapacity = serializedObject.FindProperty(nameof(console.logCapacity));
+            excuteCapacity = serializedObject.FindProperty(nameof(console.excuteCapacity));
+            swipeRatio = serializedObject.FindProperty(nameof(console.swipeRatio));
+            defaultFontSize = serializedObject.FindProperty(nameof(console.defaultFontSize));
+            autoShowWarning = serializedObject.FindProperty(nameof(console.autoShowWarning));
+            autoShowError = serializedObject.FindProperty(nameof(console.autoShowError));
+            autoShowException = serializedObject.FindProperty(nameof(console.autoShowException));
+            commandLog = serializedObject.FindProperty(nameof(console.commandLog));
+
             sb = sb ?? new StringBuilder();
             sb.Clear();
-            sb.Append("Luvi Console Version 2.4.1");
+            sb.Append("Luvi Console Version 2.4.2");
             sb.AppendLine();
 #if UNITY_EDITOR
             sb.Append("In editor, Press F1 for toggle LuviDebug.");
@@ -49,19 +66,19 @@ namespace LuviKunG
             serializedObject.Update();
             using (var checkScope = new EditorGUI.ChangeCheckScope())
             {
-                console.logCapacity = EditorGUILayout.IntField(contentLogCapacity, console.logCapacity);
-                console.excuteCapacity = EditorGUILayout.IntField(contentExecuteCapacity, console.excuteCapacity);
-                console.swipeRatio = EditorGUILayout.Slider(contentSwipeRatio, console.swipeRatio, 0f, 1f);
-                console.defaultFontSize = EditorGUILayout.IntSlider(contentDefaultFontSize, console.defaultFontSize, 8, 64);
-                console.autoShowWarning = EditorGUILayout.Toggle(contentAutoShowWarning, console.autoShowWarning);
-                console.autoShowError = EditorGUILayout.Toggle(contentAutoShowError, console.autoShowError);
-                console.autoShowException = EditorGUILayout.Toggle(contentAutoShowException, console.autoShowException);
-                console.commandLog = EditorGUILayout.Toggle(contentCommandLog, console.commandLog);
+                logCapacity.intValue = EditorGUILayout.IntField(contentLogCapacity, logCapacity.intValue);
+                excuteCapacity.intValue = EditorGUILayout.IntField(contentExecuteCapacity, excuteCapacity.intValue);
+                swipeRatio.floatValue = EditorGUILayout.Slider(contentSwipeRatio, swipeRatio.floatValue, 0f, 1f);
+                defaultFontSize.intValue = EditorGUILayout.IntSlider(contentDefaultFontSize, defaultFontSize.intValue, 8, 64);
+                autoShowWarning.boolValue = EditorGUILayout.Toggle(contentAutoShowWarning, autoShowWarning.boolValue);
+                autoShowError.boolValue = EditorGUILayout.Toggle(contentAutoShowError, autoShowError.boolValue);
+                autoShowException.boolValue = EditorGUILayout.Toggle(contentAutoShowException, autoShowException.boolValue);
+                commandLog.boolValue = EditorGUILayout.Toggle(contentCommandLog, commandLog.boolValue);
                 if (checkScope.changed)
                     EditorUtility.SetDirty(console);
             }
-            EditorGUILayout.HelpBox(sb.ToString(), MessageType.Info);
             serializedObject.ApplyModifiedProperties();
+            EditorGUILayout.HelpBox(sb.ToString(), MessageType.Info);
         }
     }
 }

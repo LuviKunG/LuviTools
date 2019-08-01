@@ -26,7 +26,7 @@ Some useful unity plugins, created by Thanut Panichyotai (@[LuviKunG]((https://g
 - **Thai Font Adjuster Pack**
 	- Fix null string broke the adjuster class.
 	- Add **TextThaiGlyph** that act like **Text** of ```UnityEngine.UI``` but include thai character adjuster string.
-	- Add **ThaiCharacterReplacer** & **ThaiCharacterReplacerTMP* to help put thai character into **Text** or **TextMeshProUGUI** components.
+	- Add **ThaiCharacterReplacer** & **ThaiCharacterReplacerTMP** to help put thai character into **Text** or **TextMeshProUGUI** components.
 - **UnityUI**
 	- Add **ButtonToggle** to act like button + toggle that can switch between two group of GameObject that show active/inactive state.
 - **User Interface Management**
@@ -35,6 +35,8 @@ Some useful unity plugins, created by Thanut Panichyotai (@[LuviKunG]((https://g
 - **Utilities**
 	- Fix **Loop** that handle wrong initial index.
 	- Add **FloatRange** and **IntRange** to define the range of numbers.
+- **LuviConsole**
+	- Fix changes are not save via Unity Inspector.
 - Simplified many script. 
 - Remove unused namespace.
 
