@@ -13,11 +13,11 @@ namespace LuviKunG
             VeryHigh,
         }
 
-        private static readonly GUIContent CONTENT_MIP_MAP_BIAS_LEVEL = new GUIContent("Mip Map Bias Level", "This will set all your selection textures mip map bias depend on level.\nNormal = 0\nHigh = -0.5\nVery High = -1.5");
+        private static readonly GUIContent CONTENT_MIP_MAP_BIAS_LEVEL = new GUIContent("Mipmap Bias Level", "This will set all your selection textures mipmap bias depend on level.\nNormal = 0\nHigh = -0.5\nVery High = -1.5");
 
         public static MipMapBiasEditor OpenWindowWithSelection(Object[] objects)
         {
-            MipMapBiasEditor window = GetWindow<MipMapBiasEditor>(true, "Mip Map Bias", true);
+            MipMapBiasEditor window = GetWindow<MipMapBiasEditor>(true, "Mipmap Bias", true);
             window.SetSelection(objects);
             window.Show();
             return window;
@@ -39,7 +39,7 @@ namespace LuviKunG
             if (list != null && list.Count > 0)
             {
                 biasLevel = (BiasLevel)EditorGUILayout.EnumPopup(CONTENT_MIP_MAP_BIAS_LEVEL, biasLevel);
-                if (GUILayout.Button("Update Bias"))
+                if (GUILayout.Button("Update Mipmap Bias"))
                 {
                     float currentBiasLevel = GetBiasLevelValue(biasLevel);
                     for (int i = 0; i < list.Count; i++)
@@ -52,23 +52,16 @@ namespace LuviKunG
                 using (var scrollViewScope = new EditorGUILayout.ScrollViewScope(scrollview))
                 {
                     scrollview = scrollViewScope.scrollPosition;
-                    using (var changeScope = new EditorGUI.ChangeCheckScope())
+                    for (int i = 0; i < list.Count; i++)
                     {
-                        for (int i = 0; i < list.Count; i++)
-                        {
-                            if (list[i] == null) list.RemoveAt(i--);
-                            else list[i] = (Texture)EditorGUILayout.ObjectField(GUIContent.none, list[i], typeof(Texture), false, GUILayout.Height(EditorGUIUtility.singleLineHeight));
-                        }
-                        if (changeScope.changed)
-                        {
-
-                        }
+                        if (list[i] == null) list.RemoveAt(i--);
+                        else list[i] = (Texture)EditorGUILayout.ObjectField(GUIContent.none, list[i], typeof(Texture), false, GUILayout.Height(EditorGUIUtility.singleLineHeight));
                     }
                 }
             }
             else
             {
-                EditorGUILayout.HelpBox("Please using Assets Menu to configure mip map bias.", MessageType.Warning, true);
+                EditorGUILayout.HelpBox("Please using Assets Menu to configure mipmap bias.", MessageType.Warning, true);
             }
         }
 
