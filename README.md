@@ -3,6 +3,11 @@ Some useful unity plugins, created by Thanut Panichyotai (@[LuviKunG]((https://g
 
 ## Version History
 
+### August 6th 2019
+- Add new **Script Define Symbols Editor**
+	- Simply add/remove the script define symbols.
+	- Serparate option for every build target groups.
+
 ### August 1st 2019
 - Big day update!
 - **Android Management**
