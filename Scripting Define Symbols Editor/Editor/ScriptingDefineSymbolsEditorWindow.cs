@@ -6,16 +6,16 @@ using UnityEngine;
 
 namespace LuviKunG
 {
-    public class ScriptDefineSymbolEditorWindow : EditorWindow
+    public class ScriptingDefineSymbolsEditorWindow : EditorWindow
     {
-        private static readonly GUIContent CONTENT_LIST_HEADER = new GUIContent("Script Define Symbols");
-        private static readonly GUIContent CONTENT_BUTTON_REVERT = new GUIContent("Revert", "Revert all Script Define Symbols changes.");
-        private static readonly GUIContent CONTENT_BUTTON_APPLY = new GUIContent("Apply", "Apply all Script Define Symbols changes. This will made unity recompile.");
+        private static readonly GUIContent CONTENT_LIST_HEADER = new GUIContent("Scripting Define Symbols");
+        private static readonly GUIContent CONTENT_BUTTON_REVERT = new GUIContent("Revert", "Revert all Scripting Define Symbols changes.");
+        private static readonly GUIContent CONTENT_BUTTON_APPLY = new GUIContent("Apply", "Apply all Scripting Define Symbols changes. This will made unity recompile if your current build target group is active.");
 
-        [MenuItem("Window/LuviKunG/Script Define Symbol Editor", false)]
-        public static ScriptDefineSymbolEditorWindow OpenWindow()
+        [MenuItem("Window/LuviKunG/Scripting Define Symbols Editor", false)]
+        public static ScriptingDefineSymbolsEditorWindow OpenWindow()
         {
-            var window = GetWindow<ScriptDefineSymbolEditorWindow>(false, "Script Define Symbol Editor", true);
+            var window = GetWindow<ScriptingDefineSymbolsEditorWindow>(false, "Scripting Define Symbols", true);
             window.Show();
             return window;
         }
@@ -65,13 +65,20 @@ namespace LuviKunG
                     }
                 }
             }
-            using (var changeScope = new EditorGUI.ChangeCheckScope())
+            if (buildTargetGroup == BuildTargetGroup.Unknown)
             {
-                listMain.DoLayoutList();
-                if (changeScope.changed)
+                EditorGUILayout.HelpBox("Scripting Define Symbols is disabled on this build target group.", MessageType.Info, true);
+            }
+            else
+            {
+                using (var changeScope = new EditorGUI.ChangeCheckScope())
                 {
-                    if (!isDirty)
-                        isDirty = true;
+                    listMain.DoLayoutList();
+                    if (changeScope.changed)
+                    {
+                        if (!isDirty)
+                            isDirty = true;
+                    }
                 }
             }
         }
@@ -86,7 +93,10 @@ namespace LuviKunG
         private void UpdateScriptDefineSymbolsParameters()
         {
             var sds = PlayerSettings.GetScriptingDefineSymbolsForGroup(buildTargetGroup);
-            sdsList = GetListScriptDefineSymbolsParameters(sds);
+            if (string.IsNullOrWhiteSpace(sds))
+                sdsList = new List<string>();
+            else
+                sdsList = GetListScriptDefineSymbolsParameters(sds);
             isDirty = false;
             listMain = new ReorderableList(sdsList, typeof(string), true, true, true, true);
             listMain.drawHeaderCallback = DrawHeader;
@@ -146,6 +156,10 @@ namespace LuviKunG
                     }
                 }
                 PlayerSettings.SetScriptingDefineSymbolsForGroup(buildTargetGroup, sb.ToString());
+            }
+            else
+            {
+                PlayerSettings.SetScriptingDefineSymbolsForGroup(buildTargetGroup, "");
             }
             isDirty = false;
         }

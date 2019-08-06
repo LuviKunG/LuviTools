@@ -4,8 +4,8 @@ Some useful unity plugins, created by Thanut Panichyotai (@[LuviKunG]((https://g
 ## Version History
 
 ### August 6th 2019
-- Add new **Script Define Symbols Editor**
-	- Simply add/remove the script define symbols.
+- Add new **Scripting Define Symbols Editor**
+	- Simply add/remove/reorder element of scripting define symbols element.
 	- Serparate option for every build target groups.
 
 ### August 1st 2019
