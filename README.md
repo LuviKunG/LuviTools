@@ -3,6 +3,13 @@ Some useful unity plugins, created by Thanut Panichyotai (@[LuviKunG]((https://g
 
 ## Version History
 
+### August 7th 2019
+- **Mip Map Bias**
+	- Remove menu from 'Window > Mip Map Bias'.
+	- Now user need to select or multiple select the texture assets, then using 'Assets > LuviKunG > Set Mip Map Bias' menu to open the editor window.
+	- Remove input of float to set bias because it's useless.
+	- Now using enum popup to select the value of mip map bias instead.
+
 ### August 6th 2019
 - New **Scripting Define Symbols Editor**
 	- Simply add/remove/reorder element of scripting define symbols element.
