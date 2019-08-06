@@ -9,6 +9,11 @@ Some useful unity plugins, created by Thanut Panichyotai (@[LuviKunG]((https://g
 	- Now user need to select or multiple select the texture assets, then using 'Assets > LuviKunG > Set Mip Map Bias' menu to open the editor window.
 	- Remove input of float to set bias because it's useless.
 	- Now using enum popup to select the value of mip map bias instead.
+- Deprecated **Camera Aspect**
+- Update **Camera Aspect Ratio**
+	- Include option to select the aspect ratio mode between 'Expand' or 'Shrink', similar with UnityUI Canvas.
+	- No longer execute in edit mode.
+	- By selecting the component's game object, it will update the aspect ratio by automatically.
 
 ### August 6th 2019
 - New **Scripting Define Symbols Editor**
