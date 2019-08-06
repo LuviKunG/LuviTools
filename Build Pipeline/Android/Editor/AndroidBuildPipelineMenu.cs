@@ -32,7 +32,14 @@ namespace LuviKunG
                     scenes.RemoveAt(i--);
             if (!(scenes.Count > 0))
                 return;
-            string fileName = new AndroidBuildPipelineSettings().GetFileName();
+            var settings = new AndroidBuildPipelineSettings();
+            if (settings.incrementBundle)
+            {
+                int bundleVersion = PlayerSettings.Android.bundleVersionCode;
+                bundleVersion++;
+                PlayerSettings.Android.bundleVersionCode = bundleVersion;
+            }
+            string fileName = settings.GetFileName();
             string buildPath = Path.Combine(directoryPath, fileName);
             BuildReport report = BuildPipeline.BuildPlayer(scenes.ToArray(), buildPath, BuildTarget.Android, BuildOptions.None);
             BuildSummary summary = report.summary;
@@ -90,9 +97,11 @@ namespace LuviKunG
     {
         private const string EDITOR_PREFS_SETTINGS_NAME_FORMAT = "LuviKunG/BuildPipeline/Android/NameFormat";
         private const string EDITOR_PREFS_SETTINGS_DATE_TIME_FORMAT = "LuviKunG/BuildPipeline/Android/DateTimeFormat";
+        private const string EDITOR_PREFS_SETTINGS_INCREMENT_BUNDLE = "LuviKunG/BuildPipeline/Android/IncrementBundle";
 
         public string nameFormat;
         public string dateTimeFormat;
+        public bool incrementBundle;
 
         public AndroidBuildPipelineSettings()
         {
@@ -103,12 +112,14 @@ namespace LuviKunG
         {
             nameFormat = EditorPrefs.GetString(EDITOR_PREFS_SETTINGS_NAME_FORMAT, "{package}_{date}");
             dateTimeFormat = EditorPrefs.GetString(EDITOR_PREFS_SETTINGS_DATE_TIME_FORMAT, "yyyyMMddHHmmss");
+            incrementBundle = EditorPrefs.GetBool(EDITOR_PREFS_SETTINGS_INCREMENT_BUNDLE, false);
         }
 
         public void Save()
         {
             EditorPrefs.SetString(EDITOR_PREFS_SETTINGS_NAME_FORMAT, nameFormat);
             EditorPrefs.SetString(EDITOR_PREFS_SETTINGS_DATE_TIME_FORMAT, dateTimeFormat);
+            EditorPrefs.SetBool(EDITOR_PREFS_SETTINGS_INCREMENT_BUNDLE, incrementBundle);
         }
 
         public string GetFileName()
@@ -158,6 +169,7 @@ namespace LuviKunG
                 EditorGUILayout.LabelField("Formatted name", format.GetFileName(), EditorStyles.textField);
                 EditorGUILayout.HelpBox(NAME_FORMATTING_INFO, MessageType.Info, true);
                 format.dateTimeFormat = EditorGUILayout.TextField("Date time format", format.dateTimeFormat);
+                format.incrementBundle = EditorGUILayout.Toggle("Increase Bundle Version", format.incrementBundle);
                 if (changeScope.changed)
                     format.Save();
             }

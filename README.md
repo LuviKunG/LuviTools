@@ -4,9 +4,11 @@ Some useful unity plugins, created by Thanut Panichyotai (@[LuviKunG]((https://g
 ## Version History
 
 ### August 6th 2019
-- Add new **Scripting Define Symbols Editor**
+- New **Scripting Define Symbols Editor**
 	- Simply add/remove/reorder element of scripting define symbols element.
 	- Serparate option for every build target groups.
+- **Build Pipeline for Android**
+	- Add editor option for increase bundle version number everytime that user  perform to build.
 
 ### August 1st 2019
 - Big day update!
