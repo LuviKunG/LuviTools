@@ -7,15 +7,14 @@ namespace LuviKunG
     {
         public enum Mode
         {
+            Width,
             Expand,
             Shrink
         }
 
-        [NotNull]
         public Camera targetCamera;
         public bool runOnlyOnce;
         public Vector2 size = new Vector2(4, 3);
-
         public Mode mode;
 
         [SerializeField]
@@ -57,13 +56,18 @@ namespace LuviKunG
         private void Update()
         {
             UpdateCameraAspect();
-            if (runOnlyOnce) enabled = false;
+            if (runOnlyOnce)
+                enabled = false;
         }
 
         public void UpdateCameraAspect()
         {
             orthographicSize = size.x / targetCamera.aspect;
-            if (mode == Mode.Expand)
+            if (mode == Mode.Width)
+            {
+                targetCamera.orthographicSize = size.x / targetCamera.aspect;
+            }
+            else if (mode == Mode.Expand)
             {
                 if (orthographicSize > size.y)
                     targetCamera.orthographicSize = orthographicSize * (1 / zoomScale);
@@ -82,6 +86,8 @@ namespace LuviKunG
 #if UNITY_EDITOR
         private void OnValidate()
         {
+            if (targetCamera == null)
+                return;
             zoomScale = m_zoomScale;
             UpdateCameraAspect();
         }
@@ -96,11 +102,15 @@ namespace LuviKunG
 
         private void OnDrawGizmos()
         {
+            if (targetCamera == null || !enabled)
+                return;
             DrawCameraAspectBox(0.5f);
         }
 
         private void OnDrawGizmosSelected()
         {
+            if (targetCamera == null || !enabled)
+                return;
             DrawCameraAspectBox(1.0f);
         }
 
@@ -110,7 +120,15 @@ namespace LuviKunG
             Color color = gizmosColor;
             color.a = a;
             Gizmos.color = color;
-            Gizmos2D.DrawWireBox(transform.position, size);
+            if (mode == Mode.Width)
+            {
+                Vector2 sizeWidth = new Vector2(size.x, size.x / targetCamera.aspect);
+                Gizmos2D.DrawWireBox(transform.position, sizeWidth);
+            }
+            else
+            {
+                Gizmos2D.DrawWireBox(transform.position, size);
+            }
             Gizmos.color = cache;
         }
 #endif

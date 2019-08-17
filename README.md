@@ -3,6 +3,12 @@ Some useful unity plugins, created by Thanut Panichyotai (@[LuviKunG]((https://g
 
 ## Version History
 
+### August 17th 2019
+- Update **Camera Aspect Ratio**
+	- Add **Width** mode to lock the camera aspect by width (instead of default of height).
+	- Update Inspectator GUI.
+	- Fix NullReferenceException when target camera is null while selecting the component's game object.
+
 ### August 7th 2019
 - **Mipmap Bias**
 	- Remove menu from 'Window > Mip Map Bias'.
