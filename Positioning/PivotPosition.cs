@@ -4,7 +4,7 @@ using UnityEngine;
 [Serializable]
 public struct PivotPosition
 {
-    public enum Pivot { First, InverseFirst, Middle, InverseMiddle }
+    public enum Pivot { Order, Middle }
     public Pivot pivot;
     public Vector3 size;
 
@@ -28,10 +28,8 @@ public struct PivotPosition
 #endif
         switch (pivot)
         {
-            case Pivot.First: return size * index;
+            case Pivot.Order: return size * index;
             case Pivot.Middle: return size * index - (size / 2.0f) * (length - 1);
-            case Pivot.InverseFirst: return -size * index;
-            case Pivot.InverseMiddle: return (size / 2.0f) * (length - 1) - size * index;
             default: return Vector3.zero;
         }
     }

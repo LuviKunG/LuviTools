@@ -3,6 +3,32 @@ Some useful unity plugins, created by Thanut Panichyotai (@[LuviKunG]((https://g
 
 ## Version History
 
+### August 17th 2019
+- Update **Camera Aspect Ratio**
+	- Add **Width** mode to lock the camera aspect by width (instead of default of height).
+	- Update Inspectator GUI.
+	- Fix NullReferenceException when target camera is null while selecting the component's game object.
+
+### August 7th 2019
+- **Mipmap Bias**
+	- Remove menu from 'Window > Mip Map Bias'.
+	- User can single select, multiple select or folder select, then using 'Assets > LuviKunG > Open Mipmap Bias Window' menu to open the editor window with selecting content.
+	- Remove input of float to set bias because it's useless.
+	- Now using enum popup to select the value of mip map bias instead.
+- Deprecated **Camera Aspect**
+- Update **Camera Aspect Ratio**
+	- Include option to select the aspect ratio mode between 'Expand' or 'Shrink', similar with UnityUI Canvas.
+	- No longer execute in edit mode.
+	- By selecting the component's game object, it will update the aspect ratio by automatically.
+- Deprecated **Combine Assets**
+- Add new **Assets Management**
+	- List GUI with icon type.
+	- Able to combine assets.
+	- Able to rename sub assets.
+	- Able to show or hide sub assets.
+- **Positioning**
+	- Remove two options in ```PivotPosition``` because it's same as the old option with inverse size.
+
 ### August 6th 2019
 - New **Scripting Define Symbols Editor**
 	- Simply add/remove/reorder element of scripting define symbols element.
