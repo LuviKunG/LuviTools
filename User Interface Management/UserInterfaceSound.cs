@@ -9,7 +9,7 @@ namespace LuviKunG.UI
     public class UserInterfaceSound : MonoBehaviour
     {
         protected const string DEFAULT_PREFAB_RESOURCE_PATH = "LuviKunG/UserInterfaceSound";
-        protected static readonly string NAME = typeof(LuviConsole).Name;
+        protected static readonly string NAME = nameof(UserInterfaceSound);
 
         protected static UserInterfaceSound instance;
         public static UserInterfaceSound Instance
