@@ -3,6 +3,11 @@ Some useful unity plugins, created by Thanut Panichyotai (@[LuviKunG]((https://g
 
 ## Version History
 
+### August 26th 2019
+- Add new **LuviSocketIO** (Client side only)
+	- Using with Node.js SocketIO.
+	- Still in development and improvement.
+
 ### August 17th 2019
 - Update **Camera Aspect Ratio**
 	- Add **Width** mode to lock the camera aspect by width (instead of default of height).
