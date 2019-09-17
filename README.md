@@ -3,6 +3,11 @@ Some useful unity plugins, created by Thanut Panichyotai (@[LuviKunG]((https://g
 
 ## Version History
 
+### September 17th 2019
+- Add new **Touchable (Image Mask)**
+	- Same as **Touchable** but able to set Image to check alpha of the image to raycast.
+	- Must enable 'Read/Write Enable' on the sprite's texture to use this.
+
 ### August 26th 2019
 - Add new **LuviSocketIO** (Client side only)
 	- Using with Node.js SocketIO.

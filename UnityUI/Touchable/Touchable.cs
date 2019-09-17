@@ -1,16 +1,19 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
-[AddComponentMenu("UI/Touchable")]
-public class Touchable : Graphic
+namespace LuviKunG.UI
 {
-    public override bool Raycast(Vector2 sp, Camera eventCamera)
+    [AddComponentMenu("LuviKunG/Unity UI/Touchable")]
+    public class Touchable : Graphic
     {
-        return true;
-    }
+        public override bool Raycast(Vector2 sp, Camera eventCamera)
+        {
+            return true;
+        }
 
-    protected override void OnPopulateMesh(VertexHelper vh)
-    {
-        vh.Clear();
+        protected override void OnPopulateMesh(VertexHelper vh)
+        {
+            vh.Clear();
+        }
     }
 }
