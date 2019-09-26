@@ -3,7 +3,7 @@ Some useful unity plugins, created by Thanut Panichyotai (@[LuviKunG](https://gi
 
 ## Version History
 
-### September 26th 2019'
+### September 26th 2019
 - Add Legacy GUI Debug.
 	- It's smaller version of LuviConsole.
 	- I'm used it during debugging on WebGL in mobile.
