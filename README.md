@@ -1,7 +1,19 @@
 # LuviTools
-Some useful unity plugins, created by Thanut Panichyotai (@[LuviKunG]((https://github.com/LuviKunG)))
+Some useful unity plugins, created by Thanut Panichyotai (@[LuviKunG](https://github.com/LuviKunG))
 
 ## Version History
+
+### September 26th 2019'
+- Add Legacy GUI Debug.
+	- It's smaller version of LuviConsole.
+	- I'm used it during debugging on WebGL in mobile.
+- Add Post Process Build WebGL that able to remove warning in mobile.
+	- *Still need more improvement! (like UI window in Unity) So wait for me!*
+- Remove these plugins from this repository, because it's already created as repository UPM. (Click on the name to redirect to it's repository UPM)
+	- [LuviConsole](https://github.com/LuviKunG/LuviConsole).
+	- [Mipmap Bias Editor](https://github.com/LuviKunG/MipMapBiasEditor).
+	- [Scripting Define Symbols Editor](https://github.com/LuviKunG/ScriptDefineSymbolsEditor).
+	- [Build Pipeline for Android](https://github.com/LuviKunG/AndroidBuildPipeline).
 
 ### September 17th 2019
 - Add new **Touchable (Image Mask)**
