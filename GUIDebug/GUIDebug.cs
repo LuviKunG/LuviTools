@@ -31,6 +31,7 @@ namespace LuviKunG.Debug
             skin = ScriptableObject.CreateInstance<GUISkin>();
             styleLabel = skin.label;
             styleLabel.padding = new RectOffset(0, 0, 0, 0);
+            styleLabel.wordWrap = true;
         }
 
         private void OnEnable()

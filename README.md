@@ -3,6 +3,23 @@ Some useful unity plugins, created by Thanut Panichyotai (@[LuviKunG](https://gi
 
 ## Version History
 
+### October 8th 2019
+- Add new **Better Button**
+	- Just a Unity UI Button with onUp & onDown Unity Events.
+- Add **URL**
+	- Tools that able to parse query into Dictionary and able to add, remove or modify parameters.
+- Add **Loop**
+	- Like a List but able to get current, next or previous object index.
+- Add **Parallax**
+	- It's a tools that help transform to parallax.
+- Update **StringSceneAttribute**
+	- Add default constructor.
+- Update **GUIDebug**
+	- Add word wrap to label.
+- Remove old **Loop**
+- Remove **Post Process Build WebGL** because it's already include in [Build Pipeline for WebGL](https://github.com/LuviKunG/BuildPipelineWebGL)
+- Relocate **Limit**
+
 ### September 26th 2019
 - Add Legacy GUI Debug.
 	- It's smaller version of LuviConsole.

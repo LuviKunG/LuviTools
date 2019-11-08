@@ -6,6 +6,11 @@ public class StringSceneAttribute : PropertyAttribute
 {
     public bool excludeDisableScene;
 
+    public StringSceneAttribute()
+    {
+        excludeDisableScene = true;
+    }
+
     public StringSceneAttribute(bool excludeDisableScene)
     {
         this.excludeDisableScene = excludeDisableScene;
