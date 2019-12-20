@@ -3,6 +3,10 @@ Some useful unity plugins, created by Thanut Panichyotai (@[LuviKunG](https://gi
 
 ## Version History
 
+### December 20th 2019
+- Add **StringInput** Attribute
+	- Define to string to act as selectable in inspector.
+
 ### October 8th 2019
 - Add new **Better Button**
 	- Just a Unity UI Button with onUp & onDown Unity Events.
