@@ -3,7 +3,7 @@ Some useful unity plugins, created by Thanut Panichyotai (@[LuviKunG](https://gi
 
 ## Version History
 
-### January 3rd 2019
+### January 3rd 2020
 - Add **Animation Event Viewer** Editor.
 
 	![Animation Event Viewer Window](images/animation_event_viewer_window.png)
