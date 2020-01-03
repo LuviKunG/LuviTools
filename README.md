@@ -3,6 +3,14 @@ Some useful unity plugins, created by Thanut Panichyotai (@[LuviKunG](https://gi
 
 ## Version History
 
+### January 3rd 2019
+- Add **Animation Event Viewer** Editor.
+
+	![Animation Event Viewer Window](images/animation_event_viewer_window.png)
+
+	- Multiple select on Animation Clip and right click, select ***'LuviKunG > Animation Event Viewer'*** menu to open editor window.
+- From now on, I'll trying to rearrange all tools and serparate by Assembly Definition. So that will making easily to add/remove from Unity Project and faster complie time.
+
 ### December 20th 2019
 - Add **StringInput** Attribute
 	- Define to string to act as selectable in inspector.
