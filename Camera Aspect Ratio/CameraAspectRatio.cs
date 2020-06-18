@@ -65,21 +65,21 @@ namespace LuviKunG
             orthographicSize = size.x / targetCamera.aspect;
             if (mode == Mode.Width)
             {
-                targetCamera.orthographicSize = size.x / targetCamera.aspect;
+                targetCamera.orthographicSize = size.x / targetCamera.aspect / m_zoomScale;
             }
             else if (mode == Mode.Expand)
             {
                 if (orthographicSize > size.y)
-                    targetCamera.orthographicSize = orthographicSize * (1 / zoomScale);
+                    targetCamera.orthographicSize = orthographicSize * (1 / m_zoomScale);
                 else
-                    targetCamera.orthographicSize = size.y * (1 / zoomScale);
+                    targetCamera.orthographicSize = size.y * (1 / m_zoomScale);
             }
             else if (mode == Mode.Shrink)
             {
                 if (orthographicSize > size.y)
-                    targetCamera.orthographicSize = size.y * (1 / zoomScale);
+                    targetCamera.orthographicSize = size.y * (1 / m_zoomScale);
                 else
-                    targetCamera.orthographicSize = orthographicSize * (1 / zoomScale);
+                    targetCamera.orthographicSize = orthographicSize * (1 / m_zoomScale);
             }
         }
 
@@ -123,11 +123,11 @@ namespace LuviKunG
             if (mode == Mode.Width)
             {
                 Vector2 sizeWidth = new Vector2(size.x, size.x / targetCamera.aspect);
-                Gizmos2D.DrawWireBox(transform.position, sizeWidth);
+                Gizmos.DrawWireCube(transform.position, sizeWidth * 2);
             }
             else
             {
-                Gizmos2D.DrawWireBox(transform.position, size);
+                Gizmos.DrawWireCube(transform.position, size * 2);
             }
             Gizmos.color = cache;
         }

@@ -51,7 +51,8 @@ namespace LuviKunG
                 {
                     EditorGUILayout.PropertyField(size, CONTENT_SIZE);
                 }
-                EditorGUILayout.PropertyField(zoomScale, CONTENT_ZOOM);
+                if (EditorGUILayout.PropertyField(zoomScale, CONTENT_ZOOM))
+                    cameraAspect.zoomScale = zoomScale.floatValue;
             }
             serializedObject.ApplyModifiedProperties();
         }

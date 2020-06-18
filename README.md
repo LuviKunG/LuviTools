@@ -3,6 +3,10 @@ Some useful unity plugins, created by Thanut Panichyotai (@[LuviKunG](https://gi
 
 ## Version History
 
+### June 18th 2020
+- Fix **Camera Aspect Ratio**
+	- Zoom scale didn't apply during in 'width' mode. (both runtime and editor)
+
 ### January 3rd 2020
 - Add **Animation Event Viewer** Editor.
 
