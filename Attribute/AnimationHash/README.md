@@ -23,5 +23,10 @@ public class TestAnimatorHash : MonoBehaviour
     public int animationName;
 
     public Animator m_animator;
+
+    public void PlayCharacterMove(float moveSpeed)
+    {
+        m_animator.SetFloat(animationName, moveSpeed);
+    }
 }
 ```
