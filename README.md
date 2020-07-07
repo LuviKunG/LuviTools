@@ -3,6 +3,9 @@ Some useful unity plugins, created by Thanut Panichyotai (@[LuviKunG](https://gi
 
 ## Version History
 
+### July 7th 2020
+- Add **Animator Hash** attribute. [Here](Attribute/AnimationHash)
+
 ### June 18th 2020
 - Fix **Camera Aspect Ratio**
 	- Zoom scale didn't apply during in 'width' mode. (both runtime and editor)
