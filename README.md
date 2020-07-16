@@ -3,11 +3,19 @@ Some useful unity plugins, created by Thanut Panichyotai (@[LuviKunG](https://gi
 
 ## Version History
 
+### July 16th 2020
+- Add **IMGUI Menu**.
+	- Using for making quick command for test via IMGUI. By inherit and add command of your choices.
+	- No instruction will available right now.
+- Add **Disabled Group Scope**.
+	- It's IMGUI Scope that not available in UnityEngine Assembly. So I just make one that look like it.
+
 ### July 7th 2020
-- Add **Animator Hash** attribute. [Here](Attribute/AnimationHash)
+- Add **Animator Hash** attribute.
+	- [Click here for more information](Attribute/AnimationHash)
 
 ### June 18th 2020
-- Fix **Camera Aspect Ratio**
+- Fix **Camera Aspect Ratio**.
 	- Zoom scale didn't apply during in 'width' mode. (both runtime and editor)
 
 ### January 3rd 2020
@@ -19,25 +27,25 @@ Some useful unity plugins, created by Thanut Panichyotai (@[LuviKunG](https://gi
 - From now on, I'll trying to rearrange all tools and serparate by Assembly Definition. So that will making easily to add/remove from Unity Project and faster complie time.
 
 ### December 20th 2019
-- Add **StringInput** Attribute
+- Add **StringInput** Attribute.
 	- Define to string to act as selectable in inspector.
 
 ### October 8th 2019
-- Add new **Better Button**
+- Add new **Better Button**.
 	- Just a Unity UI Button with onUp & onDown Unity Events.
-- Add **URL**
+- Add **URL**.
 	- Tools that able to parse query into Dictionary and able to add, remove or modify parameters.
-- Add **Loop**
+- Add **Loop**.
 	- Like a List but able to get current, next or previous object index.
-- Add **Parallax**
+- Add **Parallax**.
 	- It's a tools that help transform to parallax.
-- Update **StringSceneAttribute**
+- Update **StringSceneAttribute**.
 	- Add default constructor.
-- Update **GUIDebug**
+- Update **GUIDebug**.
 	- Add word wrap to label.
-- Remove old **Loop**
-- Remove **Post Process Build WebGL** because it's already include in [Build Pipeline for WebGL](https://github.com/LuviKunG/BuildPipelineWebGL)
-- Relocate **Limit**
+- Remove old **Loop**.
+- Remove **Post Process Build WebGL** because it's already include in [Build Pipeline for WebGL](https://github.com/LuviKunG/BuildPipelineWebGL).
+- Relocate **Limit**.
 
 ### September 26th 2019
 - Add Legacy GUI Debug.
