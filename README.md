@@ -3,6 +3,12 @@ Some useful unity plugins, created by Thanut Panichyotai (@[LuviKunG](https://gi
 
 ## Version History
 
+### August 25th 2020
+- Add **Bounds2D**.
+	- It's bounds that using ```Vector2``` to calculate bounds.
+	- Includes all features from ```Bounds``` such as ```Contains``` ```Intersects``` and ```Expand```.
+- Improve **Visual Studio 2019 Monokai Theme**.
+
 ### July 16th 2020
 - Add **IMGUI Menu**.
 	- Using for making quick command for test via IMGUI. By inherit and add command of your choices.
