@@ -2,11 +2,11 @@
 
 namespace LuviKunG.Attributes
 {
-    public class AnimatorHashAttribute : PropertyAttribute
+    public class AnimatorParameterAttribute : PropertyAttribute
     {
         public string animatorPropertyName;
 
-        public AnimatorHashAttribute(string animatorPropertyName)
+        public AnimatorParameterAttribute(string animatorPropertyName)
         {
             this.animatorPropertyName = animatorPropertyName;
         }

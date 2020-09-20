@@ -5,8 +5,8 @@ using UnityEngine;
 
 namespace LuviKunG.Attributes
 {
-    [CustomPropertyDrawer(typeof(AnimatorHashAttribute))]
-    public class AnimatorHashDrawer : PropertyDrawer
+    [CustomPropertyDrawer(typeof(AnimatorParameterAttribute))]
+    public class AnimatorParameterDrawer : PropertyDrawer
     {
         private const string TYPE_NOT_SUPPORT = "Type not support.";
         private const string NO_SERIALIZABLE_FOUND = "No serializable found.";
@@ -16,7 +16,7 @@ namespace LuviKunG.Attributes
         private string[] parametersName;
         private int[] parametersHash;
 
-        private AnimatorHashAttribute animatorHash;
+        private AnimatorParameterAttribute animatorHash;
 
         public override float GetPropertyHeight(SerializedProperty property, GUIContent label)
         {
@@ -34,7 +34,7 @@ namespace LuviKunG.Attributes
                 var rect = new Rect(position.x, position.y, position.width, position.height);
                 if (property.type == "int")
                 {
-                    animatorHash = animatorHash ?? attribute as AnimatorHashAttribute;
+                    animatorHash = animatorHash ?? attribute as AnimatorParameterAttribute;
                     var serializedObject = property.serializedObject.FindProperty(animatorHash.animatorPropertyName);
                     if (serializedObject == null)
                     {

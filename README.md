@@ -3,6 +3,11 @@ Some useful unity plugins, created by Thanut Panichyotai (@[LuviKunG](https://gi
 
 ## Version History
 
+### September 20th 2020
+- Add **AnimatorNameAttribute**
+	- [Click here for more information](Attribute/AnimatorName)
+- Change name of **AnimatorHashAttribute** into **AnimatorParameterAttribute** instead.
+
 ### August 25th 2020
 - Add **Bounds2D**.
 	- It's bounds that using ```Vector2``` to calculate bounds.
