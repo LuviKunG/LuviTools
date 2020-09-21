@@ -3,6 +3,11 @@ Some useful unity plugins, created by Thanut Panichyotai (@[LuviKunG](https://gi
 
 ## Version History
 
+### September 21st 2020
+- Add **PreprocessThaiText**
+	- Using with LexTo C# Library and Thai Font Adjuster.
+	- LexTo C# is not available right now.
+
 ### September 20th 2020
 - Add **AnimatorNameAttribute**
 	- [Click here for more information](Attribute/AnimatorName)
