@@ -9,6 +9,7 @@ Some useful unity plugins, created by Thanut Panichyotai (@[LuviKunG](https://gi
 - Add **Interaction Manager**
   - For blocking 'Double Request' or spamming on interactive elements.
   - Using with all interaction section (eg. User Interface, WebSocket connection)
+  - Already contains usage and information via C# XML comment in class.
 
 ### September 21st 2020
 
