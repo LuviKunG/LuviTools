@@ -1,18 +1,21 @@
 ﻿using System;
 using UnityEngine;
 
-[AttributeUsage(AttributeTargets.Field, AllowMultiple = false)]
-public class StringSceneAttribute : PropertyAttribute
+namespace LuviKunG.Tools
 {
-    public bool excludeDisableScene;
-
-    public StringSceneAttribute()
+    [AttributeUsage(AttributeTargets.Field, AllowMultiple = false)]
+    public class StringSceneAttribute : PropertyAttribute
     {
-        excludeDisableScene = true;
-    }
+        public bool excludeDisableScene;
 
-    public StringSceneAttribute(bool excludeDisableScene)
-    {
-        this.excludeDisableScene = excludeDisableScene;
+        public StringSceneAttribute()
+        {
+            excludeDisableScene = true;
+        }
+
+        public StringSceneAttribute(bool excludeDisableScene)
+        {
+            this.excludeDisableScene = excludeDisableScene;
+        }
     }
 }

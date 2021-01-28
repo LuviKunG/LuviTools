@@ -4,6 +4,10 @@ Some useful unity plugins, created by Thanut Panichyotai (@[LuviKunG](https://gi
 
 ## Version History
 
+### January 28th 2021
+
+- Fix **StringSceneAttribute** that return null reference exception on newer version of Unity.
+
 ### November 26th 2020
 
 - Add **Interaction Manager**

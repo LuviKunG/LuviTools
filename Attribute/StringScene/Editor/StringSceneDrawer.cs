@@ -3,38 +3,24 @@ using System.IO;
 using UnityEditor;
 using UnityEngine;
 
-[CustomPropertyDrawer(typeof(StringSceneAttribute))]
-public class StringSceneDrawer : PropertyDrawer
+namespace LuviKunG.Tools
 {
-    private const string TYPE_NOT_SUPPORT = "Type not support.";
-
-    private StringSceneAttribute stringScene;
-    private string[] scenesPath;
-    private string[] scenesName;
-    private int currentIndex;
-
-    public override bool CanCacheInspectorGUI(SerializedProperty property)
+    [CustomPropertyDrawer(typeof(StringSceneAttribute))]
+    public class StringSceneDrawer : PropertyDrawer
     {
-        if (property.type == "string")
+        private const string TYPE_NOT_SUPPORT = "Type not support.";
+
+        private StringSceneAttribute stringScene;
+        private string[] scenesPath;
+        private string[] scenesName;
+        private int currentIndex;
+
+        public override float GetPropertyHeight(SerializedProperty property, GUIContent label)
         {
-            stringScene = attribute as StringSceneAttribute;
-            GetScenes(stringScene, out List<string> paths, out List<string> names);
-            scenesPath = paths.ToArray();
-            scenesName = names.ToArray();
-            currentIndex = GetCurrentIndex(property);
-            return true;
+            return EditorGUI.GetPropertyHeight(property, label, true);
         }
-        else return false;
-    }
 
-    public override float GetPropertyHeight(SerializedProperty property, GUIContent label)
-    {
-        return EditorGUI.GetPropertyHeight(property, label, true);
-    }
-
-    public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
-    {
-        using (var scopeProperty = new EditorGUI.PropertyScope(position, label, property))
+        public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
         {
             Color cacheColor = GUI.color;
             var indent = EditorGUI.indentLevel;
@@ -43,6 +29,11 @@ public class StringSceneDrawer : PropertyDrawer
             var rect = new Rect(position.x, position.y, position.width, position.height);
             if (property.type == "string")
             {
+                stringScene = attribute as StringSceneAttribute;
+                GetScenes(stringScene, out List<string> paths, out List<string> names);
+                scenesPath = paths.ToArray();
+                scenesName = names.ToArray();
+                currentIndex = GetCurrentIndex(property);
                 using (var scopeChange = new EditorGUI.ChangeCheckScope())
                 {
                     if (currentIndex < 0)
@@ -52,9 +43,9 @@ public class StringSceneDrawer : PropertyDrawer
                     if (scopeChange.changed)
                     {
                         property.stringValue = scenesPath[currentIndex];
-                        GetScenes(stringScene, out List<string> paths, out List<string> names);
-                        scenesPath = paths.ToArray();
-                        scenesName = names.ToArray();
+                        GetScenes(stringScene, out List<string> paths2, out List<string> names2);
+                        scenesPath = paths2.ToArray();
+                        scenesName = names2.ToArray();
                     }
                 }
             }
@@ -64,26 +55,28 @@ public class StringSceneDrawer : PropertyDrawer
             }
             EditorGUI.indentLevel = indent;
         }
-    }
 
-    private int GetCurrentIndex(SerializedProperty property)
-    {
-        for (int i = 0; i < scenesPath.Length; i++)
-            if (scenesPath[i] == property.stringValue)
-                return i;
-        return -1;
-    }
-
-    private void GetScenes(StringSceneAttribute attribute, out List<string> path, out List<string> name)
-    {
-        var scenes = EditorBuildSettings.scenes;
-        path = new List<string>();
-        name = new List<string>();
-        for (int i = 0; i < scenes.Length; i++)
+        private int GetCurrentIndex(SerializedProperty property)
         {
-            if (attribute.excludeDisableScene && !scenes[i].enabled) continue;
-            path.Add(scenes[i].path);
-            name.Add(Path.GetFileNameWithoutExtension(scenes[i].path));
+            for (int i = 0; i < scenesPath.Length; i++)
+                if (scenesPath[i] == property.stringValue)
+                    return i;
+            return -1;
+        }
+
+        private void GetScenes(StringSceneAttribute attribute, out List<string> paths, out List<string> names)
+        {
+            var scenes = EditorBuildSettings.scenes;
+            paths = new List<string>();
+            names = new List<string>();
+            for (int i = 0; i < scenes.Length; i++)
+            {
+                if (attribute.excludeDisableScene && !scenes[i].enabled) continue;
+                var path = scenes[i].path;
+                var name = Path.GetFileNameWithoutExtension(path);
+                paths.Add(path);
+                names.Add(name);
+            }
         }
     }
 }
