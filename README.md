@@ -4,6 +4,12 @@ Some useful unity plugins, created by Thanut Panichyotai (@[LuviKunG](https://gi
 
 ## Version History
 
+### March 17th 2021
+
+- Add **SubSystem**
+  - Flexible to create simple sub system class to control something partial as one by one.
+  - For example, I used for control UI layer (the most show is effective to control) and character control (for enable/disable some interaction).
+
 ### January 28th 2021
 
 - Fix **StringSceneAttribute** that return null reference exception on newer version of Unity.
