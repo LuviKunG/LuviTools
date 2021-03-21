@@ -4,6 +4,11 @@ Some useful unity plugins, created by Thanut Panichyotai (@[LuviKunG](https://gi
 
 ## Version History
 
+### March 21st 2021
+
+- Add **Assembly Viewer (Editor Window)**
+  - To view all source code file that includes in your project.
+
 ### March 17th 2021
 
 - Add **SubSystem**
