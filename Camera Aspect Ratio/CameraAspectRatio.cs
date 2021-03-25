@@ -5,9 +5,10 @@ namespace LuviKunG
     [DisallowMultipleComponent, RequireComponent(typeof(Camera))]
     public class CameraAspectRatio : MonoBehaviour
     {
-        public enum Mode
+        public enum Mode : byte
         {
-            Width,
+            ByHeight,
+            ByWidth,
             Expand,
             Shrink
         }
@@ -63,7 +64,11 @@ namespace LuviKunG
         public void UpdateCameraAspect()
         {
             orthographicSize = size.x / targetCamera.aspect;
-            if (mode == Mode.Width)
+            if (mode == Mode.ByHeight)
+            {
+                targetCamera.orthographicSize = size.x / m_zoomScale;
+            }
+            else if (mode == Mode.ByWidth)
             {
                 targetCamera.orthographicSize = size.x / targetCamera.aspect / m_zoomScale;
             }
@@ -120,7 +125,12 @@ namespace LuviKunG
             Color color = gizmosColor;
             color.a = a;
             Gizmos.color = color;
-            if (mode == Mode.Width)
+            if (mode == Mode.ByHeight)
+            {
+                Vector2 sizeWidth = new Vector2(size.x * targetCamera.aspect, size.x);
+                Gizmos.DrawWireCube(transform.position, sizeWidth * 2);
+            }
+            else if (mode == Mode.ByWidth)
             {
                 Vector2 sizeWidth = new Vector2(size.x, size.x / targetCamera.aspect);
                 Gizmos.DrawWireCube(transform.position, sizeWidth * 2);

@@ -4,6 +4,10 @@ Some useful unity plugins, created by Thanut Panichyotai (@[LuviKunG](https://gi
 
 ## Version History
 
+### March 25th 2021
+
+- Update **Camera Aspect Ratio** to support default settings (Adjust orthographic size of camera depend on height).
+
 ### March 21st 2021
 
 - Add **Assembly Viewer (Editor Window)**

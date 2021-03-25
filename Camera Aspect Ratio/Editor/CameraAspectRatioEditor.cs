@@ -42,7 +42,8 @@ namespace LuviKunG
             {
                 EditorGUILayout.PropertyField(runOnlyOnce, CONTENT_RUN_ONLY_ONCE);
                 EditorGUILayout.PropertyField(mode, CONTENT_MODE);
-                if (cameraAspect.mode == CameraAspectRatio.Mode.Width)
+                if (cameraAspect.mode == CameraAspectRatio.Mode.ByHeight ||
+                    cameraAspect.mode == CameraAspectRatio.Mode.ByWidth)
                 {
                     float sizeWidth = EditorGUILayout.FloatField(CONTENT_SIZE, size.vector2Value.x);
                     size.vector2Value = new Vector2(sizeWidth, size.vector2Value.y);
