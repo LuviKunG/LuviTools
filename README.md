@@ -4,6 +4,12 @@ Some useful unity plugins, created by Thanut Panichyotai (@[LuviKunG](https://gi
 
 ## Version History
 
+### May 12th 2021
+
+- Add new Monokai CPP for Visual Studio 2019 Community Theme.
+  - Visual Assist Plugins support.
+  - Developing C++ Project in Unreal Engine.
+
 ### March 25th 2021
 
 - Update **Camera Aspect Ratio** to support default settings (Adjust orthographic size of camera depend on height).
