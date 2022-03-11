@@ -4,6 +4,12 @@ Some useful unity plugins, created by Thanut Panichyotai (@[LuviKunG](https://gi
 
 ## Version History
 
+### March 11th 2022
+
+- Add **Sprite Atlas Editor**
+  - Not finish yet.
+  - But able to view all sprite that already packed (like a debug).
+
 ### May 12th 2021
 
 - Add new Monokai CPP for Visual Studio 2019 Community Theme.
